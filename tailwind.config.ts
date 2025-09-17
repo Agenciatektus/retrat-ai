@@ -29,9 +29,18 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         heading: ["var(--font-heading)", "serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
       backdropBlur: {
         xs: "2px",
+      },
+      borderRadius: {
+        DEFAULT: "var(--border-radius)",
+        lg: "var(--border-radius-lg)",
+        xl: "var(--border-radius-xl)",
+      },
+      boxShadow: {
+        glass: "var(--glass-shadow)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
