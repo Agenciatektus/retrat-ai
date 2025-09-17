@@ -1,26 +1,176 @@
-@import "tailwindcss";
+/* eslint-disable */
+/* @tailwind directives are processed by PostCSS and Tailwind CSS */
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Glass Editorial Theme Colors */
+  --background: #0A0A0A;
+  --surface: #141414;
+  --surface-glass: rgba(20, 20, 20, 0.4);
+  --surface-elevated: #1A1A1A;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.12);
+
+  /* Text Colors */
+  --foreground: #FFFFFF;
+  --foreground-muted: #A1A1A1;
+  --foreground-subtle: #737373;
+
+  /* Accent Colors */
+  --accent-gold: #C6A664;
+  --accent-gold-hover: #D4B875;
+  --accent-gold-muted: rgba(198, 166, 100, 0.15);
+
+  /* Status Colors */
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
 }
 
+/* @theme directive is part of Tailwind CSS v4 */
+/* stylelint-disable at-rule-no-unknown */
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-glass: var(--surface-glass);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-border-glass: var(--border-glass);
+
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-gold-hover: var(--accent-gold-hover);
+  --color-accent-gold-muted: var(--accent-gold-muted);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Glass Effects */
+  --backdrop-blur: blur(14px);
+  --glass-border: 1px solid var(--border-glass);
+  --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  /* Spacing & Sizing */
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+}
+/* stylelint-enable at-rule-no-unknown */
+
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global transitions for smoother interactions */
+button, 
+.card,
+[role="button"] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Glass Effect Utilities */
+.glass-surface {
+  background: var(--surface-glass);
+  backdrop-filter: var(--backdrop-blur);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-elevated {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: var(--backdrop-blur);
+  border: var(--glass-border);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-glass);
+}
+
+/* Focus States */
+*:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* Enhanced Glass Effects for softer shadows */
+.glass-subtle {
+  background: rgba(20, 20, 20, 0.3);
+  backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.glass-card {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.glass-modal {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.glass-borderless {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: none;
+  box-shadow: none;
+}
+
+.glass-clean {
+  background: rgba(20, 20, 20, 0.8);
+  border: none;
+  box-shadow: none;
 }
