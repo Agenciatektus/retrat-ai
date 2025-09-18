@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { billingService } from '@/lib/services/billing'
 import { z } from 'zod'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 const CheckoutRequestSchema = z.object({
   plan_id: z.string(),
   success_url: z.string().url(),

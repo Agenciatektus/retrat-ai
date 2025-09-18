@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { billingService } from '@/lib/services/billing'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 // GET /api/billing/plans - Get all subscription plans
 export async function GET(request: NextRequest) {
   try {

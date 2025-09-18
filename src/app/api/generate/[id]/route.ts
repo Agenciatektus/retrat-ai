@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { ReplicateService } from '@/lib/services/replicate'
 
 // GET /api/generate/[id] - Check generation status
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }

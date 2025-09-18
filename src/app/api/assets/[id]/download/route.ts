@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
 import { createClient } from '@/lib/supabase/server'
 
 // GET /api/assets/[id]/download - Download asset

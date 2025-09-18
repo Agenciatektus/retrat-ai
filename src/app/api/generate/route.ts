@@ -5,6 +5,9 @@ import { ReplicateService } from '@/lib/services/replicate'
 import { billingService } from '@/lib/services/billing'
 import { z } from 'zod'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 const GenerateRequestSchema = z.object({
   projectId: z.string().uuid('Invalid project ID'),
   referenceImageIds: z.array(z.string().uuid()).min(1, 'At least one reference image required').max(3, 'Maximum 3 reference images'),

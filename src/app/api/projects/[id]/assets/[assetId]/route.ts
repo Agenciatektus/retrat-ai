@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { deleteImage } from '@/lib/cloudinary'
 
 // DELETE /api/projects/[id]/assets/[assetId] - Delete specific asset
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string; assetId: string } }

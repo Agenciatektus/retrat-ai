@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { billingService } from '@/lib/services/billing'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 // GET /api/billing/subscription - Get user's billing info
 export async function GET(request: NextRequest) {
   try {

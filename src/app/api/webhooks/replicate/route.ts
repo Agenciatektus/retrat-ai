@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
 
 // Replicate webhook payload schema
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
 const ReplicateWebhookSchema = z.object({
   id: z.string(),
   version: z.string(),

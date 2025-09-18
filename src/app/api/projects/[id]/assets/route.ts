@@ -4,6 +4,9 @@ import { uploadImage } from '@/lib/cloudinary'
 import { validateImageFile } from '@/lib/utils/image-validation'
 import { z } from 'zod'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 const uploadSchema = z.object({
   type: z.enum(['user_photo', 'reference']),
 })

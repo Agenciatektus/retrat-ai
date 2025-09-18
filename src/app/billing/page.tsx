@@ -1,13 +1,14 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useBilling } from '@/hooks/useBilling'
 import { useAuth } from '@/hooks/useAuth'
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
 import { CreditCard, Calendar, Zap, AlertCircle, CheckCircle, Settings, Crown, TrendingUp } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function BillingPage() {
+// Component that uses useSearchParams - needs to be in Suspense
+function BillingContent() {
   const { user, loading: authLoading } = useAuth()
   const {
     billingInfo,
@@ -377,5 +378,26 @@ export default function BillingPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+// Loading component for Suspense
+function BillingPageLoading() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="text-center space-y-4">
+        <div className="w-8 h-8 border-2 border-accent-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p className="text-foreground-muted">Carregando página de billing...</p>
+      </div>
+    </div>
+  )
+}
+
+// Main component with Suspense boundary
+export default function BillingPage() {
+  return (
+    <Suspense fallback={<BillingPageLoading />}>
+      <BillingContent />
+    </Suspense>
   )
 }

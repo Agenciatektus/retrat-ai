@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { billingService } from '@/lib/services/billing'
 import { z } from 'zod'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 const PortalRequestSchema = z.object({
   return_url: z.string().url(),
 })

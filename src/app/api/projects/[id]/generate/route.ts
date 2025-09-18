@@ -4,6 +4,9 @@ import { startGeneration } from '@/lib/replicate'
 import { directorVisual } from '@/lib/ai/director-visual'
 import { z } from 'zod'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 const generateSchema = z.object({
   userPhotoIds: z.array(z.string()).min(1, 'At least one user photo is required'),
   referenceId: z.string().min(1, 'Reference image is required'),
