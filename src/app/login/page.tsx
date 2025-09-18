@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button, Card, CardHeader, CardTitle, CardContent, Input } from '@/components/ui'
+import { AuthDebug } from '@/components/debug/AuthDebug'
 import { Mail, Eye, EyeOff, Chrome, Instagram } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -23,17 +24,24 @@ export default function LoginPage() {
     setError('')
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      console.log('Attempting login with email:', email)
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
 
       if (error) {
+        console.error('Login error:', error)
         setError(error.message)
       } else {
-        router.push('/dashboard')
+        console.log('Login successful:', data)
+        // Wait a bit for auth state to update
+        setTimeout(() => {
+          router.push('/dashboard')
+        }, 1000)
       }
     } catch (err) {
+      console.error('Unexpected login error:', err)
       setError('An unexpected error occurred')
     } finally {
       setLoading(false)
@@ -184,6 +192,9 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
+      
+      {/* Debug Component */}
+      <AuthDebug />
     </div>
   )
 }

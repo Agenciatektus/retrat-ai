@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { useProjects } from '@/hooks/useProjects'
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
 import { UserMenu } from '@/components/layout/UserMenu'
+import { AuthDebug } from '@/components/debug/AuthDebug'
 import { Plus, Camera, Sparkles, User, LogOut, Image, Calendar } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -245,6 +246,9 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </main>
+      
+      {/* Debug Component */}
+      <AuthDebug />
     </div>
   )
 }
