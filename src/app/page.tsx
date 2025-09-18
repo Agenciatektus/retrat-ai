@@ -69,9 +69,9 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Step 1 */}
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                <FolderPlus className="w-8 h-8" />
+            <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <FolderPlus className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Crie seu Projeto
@@ -82,9 +82,9 @@ export default function Home() {
             </div>
 
             {/* Step 2 */}
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                <Upload className="w-8 h-8" />
+            <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Upload className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Envie suas Fotos Pessoais
@@ -95,9 +95,9 @@ export default function Home() {
             </div>
 
             {/* Step 3 */}
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                <Image className="w-8 h-8" />
+            <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Image className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Escolha uma Referência
@@ -108,9 +108,9 @@ export default function Home() {
             </div>
 
             {/* Step 4 */}
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                <Zap className="w-8 h-8" />
+            <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Zap className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Receba seu Retrato Pronto
