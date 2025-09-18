@@ -61,7 +61,7 @@ export class StripeService {
       return customer
     } catch (error) {
       console.error('Error creating Stripe customer:', error)
-      throw new Error(`Failed to create customer: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to create customer: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -101,7 +101,7 @@ export class StripeService {
       return session
     } catch (error) {
       console.error('Error creating checkout session:', error)
-      throw new Error(`Failed to create checkout session: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to create checkout session: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -118,7 +118,7 @@ export class StripeService {
       return session
     } catch (error) {
       console.error('Error creating portal session:', error)
-      throw new Error(`Failed to create portal session: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to create portal session: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -131,7 +131,7 @@ export class StripeService {
       return subscription
     } catch (error) {
       console.error('Error retrieving subscription:', error)
-      throw new Error(`Failed to retrieve subscription: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to retrieve subscription: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -146,7 +146,7 @@ export class StripeService {
       return subscription
     } catch (error) {
       console.error('Error canceling subscription:', error)
-      throw new Error(`Failed to cancel subscription: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to cancel subscription: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -161,7 +161,7 @@ export class StripeService {
       return subscription
     } catch (error) {
       console.error('Error reactivating subscription:', error)
-      throw new Error(`Failed to reactivate subscription: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to reactivate subscription: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -180,7 +180,7 @@ export class StripeService {
         return null
       }
       console.error('Error retrieving upcoming invoice:', error)
-      throw new Error(`Failed to retrieve upcoming invoice: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to retrieve upcoming invoice: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -196,7 +196,7 @@ export class StripeService {
       return paymentMethods.data
     } catch (error) {
       console.error('Error retrieving payment methods:', error)
-      throw new Error(`Failed to retrieve payment methods: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to retrieve payment methods: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -213,7 +213,7 @@ export class StripeService {
       return this.stripe.webhooks.constructEvent(payload, signature, webhookSecret)
     } catch (error) {
       console.error('Error verifying webhook signature:', error)
-      throw new Error(`Failed to verify webhook: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to verify webhook: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -230,7 +230,7 @@ export class StripeService {
       return prices.data
     } catch (error) {
       console.error('Error retrieving prices:', error)
-      throw new Error(`Failed to retrieve prices: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to retrieve prices: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -243,7 +243,7 @@ export class StripeService {
       return customer
     } catch (error) {
       console.error('Error retrieving customer:', error)
-      throw new Error(`Failed to retrieve customer: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to retrieve customer: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 }

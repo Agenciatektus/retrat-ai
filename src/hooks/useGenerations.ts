@@ -41,7 +41,7 @@ export function useGenerations(projectId: string) {
       const data = await response.json()
       setGenerations(data.generations)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
+      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
     } finally {
       setLoading(false)
     }
@@ -71,7 +71,7 @@ export function useGenerations(projectId: string) {
       
       return result.generation
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
+      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
       return null
     } finally {
       setGenerating(false)
@@ -97,7 +97,7 @@ export function useGenerations(projectId: string) {
           }
         }
       } catch (error) {
-        console.error('Error polling generation status:', error)
+        console.error('Error polling generation status:&apos;, error)
       }
     }, 3000) // Poll every 3 seconds
 

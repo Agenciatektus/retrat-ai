@@ -295,7 +295,7 @@ export default function Home() {
                   Comparação com controle deslizante
                 </div>
                 <p className="text-sm mt-4" style={{ color: "var(--foreground-muted)" }}>
-                  "Melhoria de pele, contraste e direção de luz sem perder naturalidade."
+                  &ldquo;Melhoria de pele, contraste e direção de luz sem perder naturalidade.&rdquo;
                 </p>
               </div>
 
@@ -323,7 +323,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm mt-4" style={{ color: "var(--foreground-muted)" }}>
-                  "Correspondência de paleta, pose e DOF."
+                  &ldquo;Correspondência de paleta, pose e DOF.&rdquo;
                 </p>
               </div>
             </div>

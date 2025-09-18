@@ -57,7 +57,7 @@ export function useGallery(): UseGalleryReturn {
       const contentDisposition = response.headers.get('content-disposition')
       const extractedFilename = contentDisposition
         ?.split('filename=')[1]
-        ?.replace(/['"]/g, '') || filename || `image-${imageId}.jpg`
+        ?.replace(/['"]/g, '&apos;) || filename || `image-${imageId}.jpg`
 
       // Create download link
       const link = document.createElement('a')
@@ -116,7 +116,7 @@ export function useGallery(): UseGalleryReturn {
       const url = window.URL.createObjectURL(blob)
 
       // Create download link
-      const link = document.createElement('a')
+      const link = document.createElement('a&apos;)
       link.href = url
       link.download = `retrat-images-${new Date().toISOString().split('T')[0]}.zip`
       document.body.appendChild(link)
@@ -142,7 +142,7 @@ export function useGallery(): UseGalleryReturn {
    */
   const favoriteImage = useCallback(async (imageId: string, isFavorite: boolean): Promise<boolean> => {
     if (!user) {
-      setError('User not authenticated')
+      setError('User not authenticated&apos;)
       return false
     }
 
@@ -178,7 +178,7 @@ export function useGallery(): UseGalleryReturn {
     }
 
     if (rating < 1 || rating > 5) {
-      setError('Rating must be between 1 and 5')
+      setError('Rating must be between 1 and 5&apos;)
       return false
     }
 
@@ -209,7 +209,7 @@ export function useGallery(): UseGalleryReturn {
    */
   const deleteImage = useCallback(async (imageId: string): Promise<boolean> => {
     if (!user) {
-      setError('User not authenticated')
+      setError('User not authenticated&apos;)
       return false
     }
 
@@ -291,7 +291,7 @@ export function useGallery(): UseGalleryReturn {
       }
 
       // Insert transformation into URL
-      return image.url.replace('/upload/', `/upload/${transformations[size]}/`)
+      return image.url.replace('/upload/&apos;, `/upload/${transformations[size]}/`)
     }
 
     // For non-Cloudinary URLs, return as-is
@@ -302,7 +302,7 @@ export function useGallery(): UseGalleryReturn {
    * Generate shareable URL for an image
    */
   const generateShareUrl = useCallback((imageId: string): string => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined&apos;) {
       return `${window.location.origin}/gallery/${imageId}`
     }
     return ''

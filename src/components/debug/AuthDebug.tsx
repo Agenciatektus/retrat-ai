@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react'
 
 export function AuthDebug() {
   const { user, profile, loading, isAuthenticated } = useAuth()
-  const [supabaseConfig, setSupabaseConfig] = useState<any>({})
+  const [supabaseConfig, setSupabaseConfig] = useState<{
+    url?: string
+    hasAnonKey: boolean
+    anonKeyLength?: number
+  }>({})
   
   useEffect(() => {
     setSupabaseConfig({

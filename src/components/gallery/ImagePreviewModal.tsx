@@ -161,7 +161,7 @@ export function ImagePreviewModal({
           className="text-accent-gold hover:text-accent-gold-hover transition-colors"
         >
           <Star
-            className={`w-4 h-4 ${star <= rating ? 'fill-current' : ''}`}
+            className={`w-4 h-4 ${star <= rating ? 'fill-current' : '&apos;}`}
           />
         </button>
       ))}
@@ -258,10 +258,10 @@ export function ImagePreviewModal({
               <motion.img
                 src={image.url}
                 alt={image.filename || 'Generated image'}
-                className="max-w-full max-h-full object-contain select-none"
+                className=&ldquo;max-w-full max-h-full object-contain select-none&rdquo;
                 style={{
                   transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
-                  transformOrigin: 'center'
+                  transformOrigin: 'center&apos;
                 }}
                 draggable={false}
                 onDoubleClick={zoom === 1 ? handleZoomIn : handleResetZoom}
@@ -275,7 +275,7 @@ export function ImagePreviewModal({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
+                    className=&ldquo;bg-black/50 backdrop-blur-sm text-white hover:bg-black/70&rdquo;
                     onClick={handleFavorite}
                   >
                     <Heart className={`w-4 h-4 ${

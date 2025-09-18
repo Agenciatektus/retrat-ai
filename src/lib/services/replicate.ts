@@ -117,7 +117,7 @@ export class ReplicateService {
       }
     } catch (error) {
       console.error('Replicate generation error:', error)
-      throw new Error(`Failed to start image generation: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to start image generation: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 
@@ -144,7 +144,7 @@ export class ReplicateService {
       }
     } catch (error) {
       console.error('Error fetching prediction status:', error)
-      throw new Error(`Failed to get generation status: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to get generation status: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
     }
   }
 

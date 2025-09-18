@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import React from 'react'
 
 // =====================================================
 // LAZY LOADED COMPONENTS FOR CODE SPLITTING

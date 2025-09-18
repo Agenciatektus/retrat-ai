@@ -79,7 +79,7 @@ export function getResponsiveImageSrcSet(
       })
       return `${url} ${width}w`
     })
-    .join(', ')
+    .join(', &apos;)
 }
 
 /**
@@ -121,7 +121,7 @@ export function getPlaceholderImageUrl(
         fetch_format: 'auto',
         crop: 'fill',
         effect: 'blur:1000',
-        flags: 'progressive'
+        flags: 'progressive&apos;
       }
     ],
     secure: true

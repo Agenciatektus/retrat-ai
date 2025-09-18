@@ -39,7 +39,7 @@ export function useGeneration() {
       const response = await fetch(`/api/projects/${request.projectId}/generate`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json&apos;,
         },
         body: JSON.stringify({
           userPhotoIds: request.userPhotoIds,

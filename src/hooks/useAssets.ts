@@ -25,7 +25,7 @@ export function useAssets(projectId: string, type?: 'user_photo' | 'reference' |
       const data = await response.json()
       setAssets(data.assets)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
+      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
     } finally {
       setLoading(false)
     }

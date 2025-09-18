@@ -101,7 +101,7 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
           </p>
           <div className="flex items-center gap-1">
             <p className="text-xs text-foreground-muted capitalize">
-              {profile?.plan || 'free'} plan
+              {profile?.plan || 'free&apos;} plan
             </p>
             {isPremium && (
               <Crown className="w-3 h-3 text-accent-gold" />
@@ -120,7 +120,7 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
               className="w-8 h-8 rounded-full object-cover"
             />
           ) : (
-            <User className="w-4 h-4 text-accent-gold" />
+            <User className=&ldquo;w-4 h-4 text-accent-gold&rdquo; />
           )}
         </div>
 
@@ -164,7 +164,7 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
                       </p>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-xs px-2 py-0.5 rounded-full bg-accent-gold-muted text-accent-gold capitalize">
-                          {profile?.plan || 'free'}
+                          {profile?.plan || 'free&apos;}
                         </span>
                         {isAdmin && (
                           <span className="text-xs px-2 py-0.5 rounded-full bg-accent-gold text-black font-medium">
@@ -177,7 +177,7 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
                 </div>
 
                 {/* Menu Items */}
-                <div className="py-2">
+                <div className=&ldquo;py-2&rdquo;>
                   {menuItems.filter(item => item.show).map((item, index) => (
                     <button
                       key={index}
@@ -187,10 +187,10 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
                       }`}
                     >
                       <item.icon className={`w-4 h-4 ${
-                        item.adminOnly ? 'text-accent-gold' : 'text-foreground-muted'
+                        item.adminOnly ? 'text-accent-gold' : 'text-foreground-muted&apos;
                       }`} />
                       <span className={`text-sm ${
-                        item.adminOnly ? 'text-accent-gold font-medium' : 'text-foreground'
+                        item.adminOnly ? 'text-accent-gold font-medium' : 'text-foreground&apos;
                       }`}>
                         {item.label}
                       </span>

@@ -147,7 +147,7 @@ export default function ProjectPage() {
                 }
                 onClick={handleGenerateRetratos}
               >
-                {generationLoading ? 'Gerando...' : 'Gerar Retratos'}
+                {generationLoading ? 'Gerando...' : 'Gerar Retratos&apos;}
               </Button>
             </div>
           </div>
@@ -260,7 +260,7 @@ export default function ProjectPage() {
               {currentGeneration && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-foreground-muted">Status:</span>
+                    <span className=&ldquo;text-sm text-foreground-muted&rdquo;>Status:</span>
                     <span className={`text-sm font-medium ${
                       currentGeneration.status === 'succeeded' ? 'text-success' :
                       currentGeneration.status === 'failed' ? 'text-error' :

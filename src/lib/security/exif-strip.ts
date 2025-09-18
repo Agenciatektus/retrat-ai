@@ -31,7 +31,7 @@ export async function uploadImageWithExifStripping(
       cloudinary.uploader.upload_stream(
         {
           folder,
-          public_id: `${folder}/${Date.now()}_${fileName.replace(/\.[^/.]+$/, '')}`,
+          public_id: `${folder}/${Date.now()}_${fileName.replace(/\.[^/.]+$/, '&apos;)}`,
           resource_type: 'image',
           // Security transformations
           transformation: [

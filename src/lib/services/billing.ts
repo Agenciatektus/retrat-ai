@@ -70,7 +70,7 @@ export class BillingService {
       if (error.code === 'PGRST116') {
         return null // No usage record found
       }
-      console.error('Error fetching usage:', error)
+      console.error('Error fetching usage:&apos;, error)
       throw new Error(`Failed to fetch usage: ${error.message}`)
     }
 
@@ -132,7 +132,7 @@ export class BillingService {
       .rpc('increment_user_usage', { user_uuid: userId })
 
     if (error) {
-      console.error('Error incrementing usage:', error)
+      console.error('Error incrementing usage:&apos;, error)
       throw new Error(`Failed to increment usage: ${error.message}`)
     }
   }
@@ -164,7 +164,7 @@ export class BillingService {
       .single()
 
     if (error) {
-      console.error('Error creating subscription:', error)
+      console.error('Error creating subscription:&apos;, error)
       throw new Error(`Failed to create subscription: ${error.message}`)
     }
 
@@ -200,7 +200,7 @@ export class BillingService {
       .single()
 
     if (error) {
-      console.error('Error updating subscription:', error)
+      console.error('Error updating subscription:&apos;, error)
       throw new Error(`Failed to update subscription: ${error.message}`)
     }
 
@@ -257,7 +257,7 @@ export class BillingService {
     const { data: plan, error: planError } = await this.supabase
       .from('subscription_plans')
       .select('*')
-      .eq('id', planId)
+      .eq('id&apos;, planId)
       .single()
 
     if (planError || !plan) {

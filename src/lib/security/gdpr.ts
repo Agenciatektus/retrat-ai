@@ -43,7 +43,7 @@ export async function exportUserData(userId: string): Promise<GDPRDataExport> {
 
     // Get user generations
     const { data: generations } = await supabase
-      .from('generations')
+      .from('generations&apos;)
       .select(`
         *,
         projects!inner(user_id)
@@ -102,7 +102,7 @@ export async function deleteUserData(userId: string): Promise<boolean> {
 
     // 1. Get all user assets to delete from Cloudinary
     const { data: assets } = await supabase
-      .from('assets')
+      .from('assets&apos;)
       .select(`
         cloudinary_public_id,
         projects!inner(user_id)
@@ -167,7 +167,7 @@ export async function anonymizeUserData(userId: string): Promise<boolean> {
   try {
     // Update user with anonymized data
     const { error } = await supabase
-      .from('users')
+      .from('users&apos;)
       .update({
         email: `deleted_${userId}@example.com`,
         full_name: 'Deleted User',

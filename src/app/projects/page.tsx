@@ -29,7 +29,7 @@ export default function ProjectsPage() {
   }
 
   const handleDeleteProject = async (projectId: string, projectName: string) => {
-    if (window.confirm(`Tem certeza que deseja excluir o projeto "${projectName}"?`)) {
+    if (window.confirm(`Tem certeza que deseja excluir o projeto &ldquo;${projectName}&rdquo;?`)) {
       await deleteProject(projectId)
     }
   }
@@ -117,7 +117,7 @@ export default function ProjectsPage() {
           <Card variant="elevated" padding="md">
             <div className="text-center">
               <p className="text-2xl font-bold text-accent-gold">
-                {profile?.plan === 'pro' ? '∞' : '5'}
+                {profile?.plan === 'pro' ? '∞' : '5&apos;}
               </p>
               <p className="text-sm text-foreground-muted">Cota Semanal</p>
             </div>
@@ -150,7 +150,7 @@ export default function ProjectsPage() {
                 {/* Project Info */}
                 <div className="space-y-3">
                   <div
-                    className="cursor-pointer"
+                    className=&ldquo;cursor-pointer&rdquo;
                     onClick={() => router.push(`/projects/${project.id}`)}
                   >
                     <h3 className="font-semibold text-foreground truncate">
@@ -171,7 +171,7 @@ export default function ProjectsPage() {
                     </span>
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      {new Date(project.created_at).toLocaleDateString('pt-BR')}
+                      {new Date(project.created_at).toLocaleDateString('pt-BR&apos;)}
                     </span>
                   </div>
 
@@ -179,7 +179,7 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between pt-2 border-t border-border-glass">
                     <Button
                       variant="ghost"
-                      size="sm"
+                      size=&ldquo;sm&rdquo;
                       onClick={() => router.push(`/projects/${project.id}`)}
                     >
                       Abrir
@@ -188,7 +188,7 @@ export default function ProjectsPage() {
                     <div className="flex items-center gap-1">
                       <Button
                         variant="ghost"
-                        size="sm"
+                        size=&ldquo;sm&rdquo;
                         onClick={() => router.push(`/projects/${project.id}/edit`)}
                       >
                         <Edit className="w-3 h-3" />
@@ -212,9 +212,9 @@ export default function ProjectsPage() {
           <div className="text-center py-12">
             <Camera className="w-16 h-16 text-foreground-muted mx-auto mb-6" />
             <h3 className="text-xl font-semibold text-foreground mb-2">
-              {search ? 'Nenhum projeto encontrado' : 'Nenhum projeto ainda'}
+              {search ? 'Nenhum projeto encontrado' : 'Nenhum projeto ainda&apos;}
             </h3>
-            <p className="text-foreground-muted mb-6 max-w-md mx-auto">
+            <p className=&ldquo;text-foreground-muted mb-6 max-w-md mx-auto&rdquo;>
               {search
                 ? `Não encontramos projetos com "${search}". Tente outro termo de busca.`
                 : 'Você ainda não criou nenhum projeto. Comece criando seu primeiro projeto de retratos.'

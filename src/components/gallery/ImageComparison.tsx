@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { RotateCcw, ZoomIn, ZoomOut, Move, Grid } from 'lucide-react'
+import { RotateCcw, ZoomIn, ZoomOut, Move, Grid, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import type { GalleryImage } from './ImageGallery'
@@ -69,7 +69,7 @@ export function ImageComparison({
   }
 
   return (
-    <Card variant="glass" className={`overflow-hidden ${className}`}>
+    <Card variant=&ldquo;glass&rdquo; className={`overflow-hidden ${className}`}>
       <CardHeader className="border-b border-border">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
@@ -143,7 +143,7 @@ export function ImageComparison({
       </CardHeader>
 
       <CardContent className="p-0">
-        {currentMode === 'side-by-side' && (
+        {currentMode === 'side-by-side&apos; && (
           <div className="grid grid-cols-2 h-96">
             {/* Image A */}
             <div className="relative border-r border-border overflow-hidden">
@@ -151,12 +151,12 @@ export function ImageComparison({
                 Imagem A
               </div>
               <div 
-                className="w-full h-full overflow-hidden cursor-move"
+                className=&ldquo;w-full h-full overflow-hidden cursor-move&rdquo;
                 style={{ transform: `scale(${zoom})` }}
               >
                 <img
                   src={imageA.url}
-                  alt={imageA.filename || 'Image A'}
+                  alt={imageA.filename || 'Image A&apos;}
                   className="w-full h-full object-cover"
                   draggable={false}
                 />
@@ -169,7 +169,7 @@ export function ImageComparison({
                 Imagem B
               </div>
               <div 
-                className="w-full h-full overflow-hidden cursor-move"
+                className=&ldquo;w-full h-full overflow-hidden cursor-move&rdquo;
                 style={{ transform: `scale(${zoom})` }}
               >
                 <img
@@ -183,7 +183,7 @@ export function ImageComparison({
           </div>
         )}
 
-        {currentMode === 'slider' && (
+        {currentMode === 'slider&apos; && (
           <div 
             ref={sliderRef}
             className="relative h-96 overflow-hidden cursor-col-resize"
@@ -191,12 +191,12 @@ export function ImageComparison({
           >
             {/* Base Image (Image A) */}
             <div 
-              className="absolute inset-0"
+              className=&ldquo;absolute inset-0&rdquo;
               style={{ transform: `scale(${zoom})` }}
             >
               <img
                 src={imageA.url}
-                alt={imageA.filename || 'Base image'}
+                alt={imageA.filename || 'Base image&apos;}
                 className="w-full h-full object-cover"
                 draggable={false}
               />
@@ -207,7 +207,7 @@ export function ImageComparison({
 
             {/* Overlay Image (Image B) */}
             <div 
-              className="absolute inset-0 overflow-hidden"
+              className=&ldquo;absolute inset-0 overflow-hidden&rdquo;
               style={{ 
                 clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
                 transform: `scale(${zoom})`
@@ -215,7 +215,7 @@ export function ImageComparison({
             >
               <img
                 src={imageB.url}
-                alt={imageB.filename || 'Overlay image'}
+                alt={imageB.filename || 'Overlay image&apos;}
                 className="w-full h-full object-cover"
                 draggable={false}
               />
@@ -226,7 +226,7 @@ export function ImageComparison({
 
             {/* Slider Handle */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-accent-gold cursor-col-resize z-10"
+              className=&ldquo;absolute top-0 bottom-0 w-1 bg-accent-gold cursor-col-resize z-10&rdquo;
               style={{ left: `${sliderPosition}%` }}
             >
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-accent-gold rounded-full flex items-center justify-center shadow-lg">

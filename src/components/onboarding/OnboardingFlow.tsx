@@ -173,24 +173,24 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-4">
             {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
+              <div key={step.id} className=&ldquo;flex items-center&rdquo;>
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
                     index <= currentStep
                       ? 'bg-accent-gold text-background'
-                      : 'bg-surface border border-border text-foreground-muted'
+                      : 'bg-surface border border-border text-foreground-muted&apos;
                   }`}
                 >
                   {index < currentStep ? (
                     <Check className="w-5 h-5" />
                   ) : (
-                    <span className="text-sm font-medium">{index + 1}</span>
+                    <span className=&ldquo;text-sm font-medium&rdquo;>{index + 1}</span>
                   )}
                 </div>
                 {index < steps.length - 1 && (
                   <div
                     className={`w-12 h-0.5 transition-colors ${
-                      index < currentStep ? 'bg-accent-gold' : 'bg-border'
+                      index < currentStep ? 'bg-accent-gold' : 'bg-border&apos;
                     }`}
                   />
                 )}

@@ -9,7 +9,7 @@ export async function register() {
       })
       
       // Make PostHog available globally for server-side tracking
-      ;(global as any).posthog = posthog
+      ;(global as typeof global & { posthog: typeof posthog }).posthog = posthog
     }
   }
 }

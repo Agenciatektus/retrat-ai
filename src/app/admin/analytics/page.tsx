@@ -12,8 +12,7 @@ import {
   ArrowLeft,
   ExternalLink,
   RefreshCw,
-  Calendar,
-  Filter
+  AlertTriangle
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -100,7 +99,7 @@ export default function AdminAnalyticsPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => router.push('/admin')}
+                  onClick={() => router.push('/admin&apos;)}
                   leftIcon={<ArrowLeft className="w-4 h-4" />}
                 >
                   Voltar
@@ -129,7 +128,7 @@ export default function AdminAnalyticsPage() {
 
               <Button
                 variant="outline"
-                size="sm"
+                size=&ldquo;sm&rdquo;
                 onClick={loadAnalytics}
                 disabled={analyticsLoading}
                 leftIcon={<RefreshCw className={`w-4 h-4 ${analyticsLoading ? 'animate-spin' : ''}`} />}
@@ -169,8 +168,8 @@ export default function AdminAnalyticsPage() {
                   <p className="text-2xl font-bold text-foreground">
                     {analyticsLoading ? '...' : analytics?.generationsWeek || 0}
                   </p>
-                  <p className="text-xs text-success">
-                    {analyticsLoading ? '...' : `${(analytics?.successRate || 0).toFixed(1)}% sucesso`}
+                  <p className=&ldquo;text-xs text-success&rdquo;>
+                    {analyticsLoading ? '...&apos; : `${(analytics?.successRate || 0).toFixed(1)}% sucesso`}
                   </p>
                 </div>
                 <Zap className="w-8 h-8 text-accent-gold" />
@@ -186,8 +185,8 @@ export default function AdminAnalyticsPage() {
                   <p className="text-2xl font-bold text-foreground">
                     R$ {analyticsLoading ? '...' : (analytics?.revenueWeek || 0).toFixed(0)}
                   </p>
-                  <p className="text-xs text-success">
-                    {analyticsLoading ? '...' : `${(analytics?.conversionRate || 0).toFixed(1)}% conversão`}
+                  <p className=&ldquo;text-xs text-success&rdquo;>
+                    {analyticsLoading ? '...&apos; : `${(analytics?.conversionRate || 0).toFixed(1)}% conversão`}
                   </p>
                 </div>
                 <DollarSign className="w-8 h-8 text-accent-gold" />
@@ -200,8 +199,8 @@ export default function AdminAnalyticsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground-muted">Tempo Médio</p>
-                  <p className="text-2xl font-bold text-foreground">
-                    {analyticsLoading ? '...' : `${analytics?.avgGenerationTime || 0}s`}
+                  <p className=&ldquo;text-2xl font-bold text-foreground&rdquo;>
+                    {analyticsLoading ? '...&apos; : `${analytics?.avgGenerationTime || 0}s`}
                   </p>
                   <p className="text-xs text-foreground-muted">por geração</p>
                 </div>

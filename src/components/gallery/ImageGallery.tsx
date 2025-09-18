@@ -114,7 +114,7 @@ export function ImageGallery({
           className="text-accent-gold hover:text-accent-gold-hover transition-colors"
         >
           <Star
-            className={`w-3 h-3 ${star <= rating ? 'fill-current' : ''}`}
+            className={`w-3 h-3 ${star <= rating ? 'fill-current' : '&apos;}`}
           />
         </button>
       ))}
@@ -139,7 +139,7 @@ export function ImageGallery({
             <Camera className="w-8 h-8 text-accent-gold" />
           </div>
           <h3 className="text-foreground text-lg font-semibold">Sem imagens ainda</h3>
-          <p className="text-foreground-muted">
+          <p className=&ldquo;text-foreground-muted&rdquo;>
             Gere retratos com IA ou faça upload para começar a preencher sua galeria.
           </p>
         </div>
@@ -153,7 +153,7 @@ export function ImageGallery({
         className={`grid gap-4 ${
           variant === 'grid'
             ? 'grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
-            : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+            : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3&apos;
         }`}
       >
         <AnimatePresence>
@@ -182,11 +182,11 @@ export function ImageGallery({
               )}
 
               <Card
-                variant="glass"
+                variant=&ldquo;glass&rdquo;
                 className={`overflow-hidden transition-all duration-200 ${
                   selectable && selectedImages.has(image.id)
                     ? 'ring-2 ring-accent-gold'
-                    : 'hover:scale-[1.02]'
+                    : 'hover:scale-[1.02]&apos;
                 }`}
                 onClick={() => handleImageClick(image)}
               >
@@ -195,12 +195,12 @@ export function ImageGallery({
                     src={image.url}
                     alt={image.filename || 'Generated image'}
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                    loading=&ldquo;lazy&rdquo;
                   />
 
                   {/* Overlay */}
                   <div className={`absolute inset-0 bg-black/40 transition-opacity duration-200 ${
-                    hoveredImage === image.id ? 'opacity-100' : 'opacity-0'
+                    hoveredImage === image.id ? 'opacity-100' : 'opacity-0&apos;
                   }`}>
                     {/* Top Actions */}
                     {showActions && (
@@ -208,11 +208,11 @@ export function ImageGallery({
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="w-8 h-8 p-0 bg-surface/80 backdrop-blur-sm"
+                          className=&ldquo;w-8 h-8 p-0 bg-surface/80 backdrop-blur-sm&rdquo;
                           onClick={(e) => handleFavorite(e, image.id, image.is_favorite)}
                         >
                           <Heart className={`w-4 h-4 ${
-                            image.is_favorite ? 'fill-accent-gold text-accent-gold' : 'text-foreground'
+                            image.is_favorite ? 'fill-accent-gold text-accent-gold' : 'text-foreground&apos;
                           }`} />
                         </Button>
 

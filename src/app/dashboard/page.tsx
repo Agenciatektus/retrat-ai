@@ -197,7 +197,7 @@ export default function DashboardPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => router.push('/projects')}
+                  onClick={() => router.push('/projects&apos;)}
                 >
                   Ver todos
                 </Button>
@@ -212,7 +212,7 @@ export default function DashboardPage() {
                     key={project.id}
                     variant="elevated"
                     hover
-                    className="cursor-pointer"
+                    className=&ldquo;cursor-pointer&rdquo;
                     onClick={() => router.push(`/projects/${project.id}`)}
                   >
                     <div className="aspect-[4/3] bg-surface rounded-lg mb-3 flex items-center justify-center">

@@ -9,34 +9,22 @@ import { useSentry } from '@/hooks/useSentry'
  * Track Core Web Vitals and send to analytics
  */
 export function trackWebVitals() {
-  const { capture } = usePostHog()
-  const { logger } = useSentry()
-
   function sendToAnalytics(metric: Metric) {
-    // Send to PostHog
-    capture('web_vital', {
-      metric_name: metric.name,
-      metric_value: metric.value,
-      metric_id: metric.id,
-      metric_delta: metric.delta,
-      metric_rating: metric.rating || 'unknown'
-    })
-
-    // Log to Sentry
-    logger?.info('Web Vital measured', {
-      name: metric.name,
-      value: metric.value,
-      rating: metric.rating,
-      id: metric.id
-    })
+    // Send to PostHog if available
+    if (typeof window !== 'undefined' && window.posthog) {
+      window.posthog.capture('web_vital', {
+        metric_name: metric.name,
+        metric_value: metric.value,
+        metric_id: metric.id,
+        metric_delta: metric.delta,
+        metric_rating: metric.rating || 'unknown'
+      })
+    }
 
     // Console log in development
     if (process.env.NODE_ENV === 'development') {
-      console.log(`📊 ${metric.name}:`, {
-        value: metric.value,
-        rating: metric.rating,
-        delta: metric.delta
-      })
+      const emoji = metric.rating === 'good' ? '🟢' : metric.rating === 'needs-improvement' ? '🟡' : '🔴'
+      console.log(`${emoji} ${metric.name}: ${metric.value}ms (${metric.rating})`)
     }
   }
 
@@ -101,8 +89,8 @@ export function optimizeINP() {
   }, { capture: true })
 
   // Use scheduler.postTask for non-urgent work
-  if ('scheduler' in window && 'postTask' in window.scheduler) {
-    // @ts-ignore
+  if ('scheduler' in window && 'postTask' in (window as any).scheduler) {
+    // @ts-expect-error - Scheduler API is experimental
     window.scheduler.postTask(() => {
       // Non-urgent initialization work
       initializeNonCriticalFeatures()
@@ -141,7 +129,7 @@ export function optimizeCLS() {
 function initializeNonCriticalFeatures() {
   // Initialize analytics
   if (typeof window !== 'undefined' && window.posthog) {
-    window.posthog.capture('app_initialized', {
+    window.posthog.capture('app_initialized&apos;, {
       timestamp: Date.now(),
       user_agent: navigator.userAgent,
       viewport: `${window.innerWidth}x${window.innerHeight}`
