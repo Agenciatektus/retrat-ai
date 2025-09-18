@@ -1,7 +1,27 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { addSecurityHeaders } from '@/lib/security/headers'
+import { isRateLimited, getRateLimitHeaders } from '@/lib/security/rate-limit'
 
 export async function updateSession(request: NextRequest) {
+  // Check rate limiting for API routes
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    if (isRateLimited(request)) {
+      const rateLimitHeaders = getRateLimitHeaders(request)
+      const response = NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      )
+      
+      // Add rate limit headers
+      Object.entries(rateLimitHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value)
+      })
+      
+      return addSecurityHeaders(response)
+    }
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -63,5 +83,6 @@ export async function updateSession(request: NextRequest) {
   // If this is not done, you may be causing the browser and server to go out
   // of sync and terminate the user's session prematurely!
 
-  return supabaseResponse
+  // Add security headers to all responses
+  return addSecurityHeaders(supabaseResponse)
 }
