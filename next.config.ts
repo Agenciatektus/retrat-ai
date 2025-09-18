@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from '@sentry/nextjs';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -52,8 +53,13 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
+// Bundle analyzer configuration
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 // Make sure adding Sentry options is the last code to run before exporting
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(bundleAnalyzer(nextConfig), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

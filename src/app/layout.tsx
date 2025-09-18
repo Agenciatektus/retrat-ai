@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/providers/PostHogProvider";
+import { WebVitalsProvider } from "@/components/providers/WebVitalsProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,9 +35,12 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <PostHogProvider>
-          {children}
+          <WebVitalsProvider>
+            {children}
+          </WebVitalsProvider>
         </PostHogProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
