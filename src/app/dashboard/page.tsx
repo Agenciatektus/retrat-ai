@@ -15,6 +15,12 @@ export default function DashboardPage() {
   const router = useRouter()
   const [isCreating, setIsCreating] = useState(false)
 
+  // Redirect to login if not authenticated and not loading
+  if (!loading && !user) {
+    router.push('/login')
+    return null
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">

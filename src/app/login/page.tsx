@@ -35,10 +35,8 @@ export default function LoginPage() {
         setError(error.message)
       } else {
         console.log('Login successful:', data)
-        // Wait a bit for auth state to update
-        setTimeout(() => {
-          router.push('/dashboard')
-        }, 1000)
+        // Let the middleware handle the redirect
+        window.location.href = '/dashboard'
       }
     } catch (err) {
       console.error('Unexpected login error:', err)

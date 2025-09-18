@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 import { Project, ProjectWithAssets, CreateProjectData, UpdateProjectData } from '@/lib/types/projects'
 
 export function useProjects() {
+  const { user, loading: authLoading } = useAuth()
   const [projects, setProjects] = useState<(Project & { asset_count: number })[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -109,8 +111,15 @@ export function useProjects() {
   }
 
   useEffect(() => {
-    fetchProjects()
-  }, [])
+    // Only fetch projects when user is authenticated and auth is not loading
+    if (!authLoading && user) {
+      fetchProjects()
+    } else if (!authLoading && !user) {
+      // User is not authenticated, set loading to false
+      setLoading(false)
+      setProjects([])
+    }
+  }, [user, authLoading])
 
   return {
     projects,
