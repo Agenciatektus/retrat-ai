@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getCurrentPricingConfig } from '@/lib/pricing'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 // GET /api/plans - Return current pricing configuration
 export async function GET(request: NextRequest) {
   try {
