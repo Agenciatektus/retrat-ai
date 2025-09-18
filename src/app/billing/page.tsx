@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useBilling } from '@/hooks/useBilling'
 import { useAuth } from '@/hooks/useAuth'
+import { AppHeader } from '@/components/layout'
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
 import { CreditCard, Calendar, Zap, AlertCircle, CheckCircle, Settings, Crown, TrendingUp } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -81,6 +82,8 @@ function BillingContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
+      <AppHeader subtitle="Billing & Subscription" />
+      
       <div className="bg-gradient-to-b from-surface-glass to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex justify-between items-center">

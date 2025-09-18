@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth'
 import { useProjects } from '@/hooks/useProjects'
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
+import { UserMenu } from '@/components/layout/UserMenu'
 import { Plus, Camera, Sparkles, User, LogOut, Image, Calendar } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -63,29 +64,13 @@ export default function DashboardPage() {
 
             <div className="flex items-center gap-4">
               {/* User Menu */}
-              <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <p className="text-sm font-medium text-foreground">
-                    {profile?.full_name || user?.email}
-                  </p>
-                  <p className="text-xs text-foreground-muted capitalize">
-                    {profile?.plan || 'free'} plan
-                  </p>
-                </div>
-
-                <div className="w-8 h-8 rounded-full bg-accent-gold-muted flex items-center justify-center">
-                  <User className="w-4 h-4 text-accent-gold" />
-                </div>
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSignOut}
-                  leftIcon={<LogOut className="w-4 h-4" />}
-                >
-                  Sign Out
-                </Button>
-              </div>
+              {user && (
+                <UserMenu 
+                  user={user}
+                  profile={profile}
+                  onSignOut={handleSignOut}
+                />
+              )}
             </div>
           </div>
         </div>

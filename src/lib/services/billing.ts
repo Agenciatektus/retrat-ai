@@ -16,17 +16,9 @@ export class BillingService {
    * Get all available subscription plans
    */
   async getPlans(): Promise<SubscriptionPlan[]> {
-    const { data, error } = await this.supabase
-      .from('subscription_plans')
-      .select('*')
-      .order('price_monthly', { ascending: true })
-
-    if (error) {
-      console.error('Error fetching plans:', error)
-      throw new Error(`Failed to fetch plans: ${error.message}`)
-    }
-
-    return data || []
+    // Return hardcoded plans from pricing.ts instead of database
+    const { getPlans } = await import('@/lib/pricing')
+    return getPlans()
   }
 
   /**
@@ -34,11 +26,8 @@ export class BillingService {
    */
   async getUserSubscription(userId: string): Promise<UserSubscriptionWithPlan | null> {
     const { data, error } = await this.supabase
-      .from('user_subscriptions')
-      .select(`
-        *,
-        plan:subscription_plans(*)
-      `)
+      .from('subscriptions')
+      .select('*')
       .eq('user_id', userId)
       .eq('status', 'active')
       .order('created_at', { ascending: false })
@@ -68,12 +57,13 @@ export class BillingService {
     const endOfWeek = new Date(startOfWeek)
     endOfWeek.setDate(startOfWeek.getDate() + 7)
 
+    const currentMonth = new Date().toISOString().slice(0, 7) // YYYY-MM format
+    
     const { data, error } = await this.supabase
-      .from('usage_records')
+      .from('usage')
       .select('*')
       .eq('user_id', userId)
-      .gte('period_start', startOfWeek.toISOString())
-      .lt('period_end', endOfWeek.toISOString())
+      .eq('month', currentMonth)
       .single()
 
     if (error) {
@@ -99,18 +89,12 @@ export class BillingService {
     // If no subscription, user is on free plan
     let plan: SubscriptionPlan
     if (!subscription) {
-      const freePlan = await this.supabase
-        .from('subscription_plans')
-        .select('*')
-        .eq('id', 'free')
-        .single()
-
-      if (freePlan.error) {
-        throw new Error(`Failed to fetch free plan: ${freePlan.error.message}`)
-      }
-      plan = freePlan.data
+      const { getFreePlan } = await import('@/lib/pricing')
+      plan = getFreePlan()
     } else {
-      plan = subscription.plan
+      // Get plan details from pricing.ts based on subscription plan_id
+      const { getPlan } = await import('@/lib/pricing')
+      plan = getPlan(subscription.plan_id)
     }
 
     const usedGenerations = currentUsage?.generations_used || 0
