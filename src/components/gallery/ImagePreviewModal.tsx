@@ -26,6 +26,7 @@ interface ImagePreviewModalProps {
   onRate?: (imageId: string, rating: number) => void
   onDownload?: (imageId: string) => void
   onDelete?: (imageId: string) => void
+  onExport?: (image: GalleryImage) => void
 }
 
 export function ImagePreviewModal({
@@ -35,7 +36,8 @@ export function ImagePreviewModal({
   onFavorite,
   onRate,
   onDownload,
-  onDelete
+  onDelete,
+  onExport
 }: ImagePreviewModalProps) {
   const [zoom, setZoom] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -141,6 +143,12 @@ export function ImagePreviewModal({
         onDelete(image.id)
         onClose()
       }
+    }
+  }
+
+  const handleExport = () => {
+    if (image && onExport) {
+      onExport(image)
     }
   }
 
@@ -290,14 +298,14 @@ export function ImagePreviewModal({
               </div>
 
               <div className="flex gap-2">
-                                {onExport && image && (
+                {onExport && (
                   <Button
                     variant="ghost"
                     size="sm"
                     className="bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
                     onClick={handleExport}
                   >
-                        <Share className="w-4 h-4" />
+                    <Share className="w-4 h-4" />
                   </Button>
                 )}
 
@@ -311,14 +319,6 @@ export function ImagePreviewModal({
                     <Download className="w-4 h-4" />
                   </Button>
                 )}
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
-                >
-                  <Share className="w-4 h-4" />
-                </Button>
 
                 {onDelete && (
                   <Button

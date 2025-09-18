@@ -29,35 +29,63 @@ const EXPORT_FORMATS: ExportFormat[] = [
   {
     name: 'Instagram Post',
     extension: 'jpg',
-    description: 'Quadrado 1080x1080',
+    description: 'Quadrado 1080x1080 • Feed',
     width: 1080,
     height: 1080
   },
   {
     name: 'Instagram Stories',
     extension: 'jpg',
-    description: 'Vertical 1080x1920',
+    description: 'Vertical 1080x1920 • Stories/Reels',
     width: 1080,
     height: 1920
   },
   {
+    name: 'Instagram Portrait',
+    extension: 'jpg',
+    description: 'Retrato 1080x1350 • Feed vertical',
+    width: 1080,
+    height: 1350
+  },
+  {
     name: 'LinkedIn Profile',
     extension: 'jpg',
-    description: 'Quadrado 400x400',
+    description: 'Quadrado 400x400 • Perfil profissional',
+    width: 400,
+    height: 400
+  },
+  {
+    name: 'LinkedIn Banner',
+    extension: 'jpg',
+    description: 'Horizontal 1584x396 • Capa do perfil',
+    width: 1584,
+    height: 396
+  },
+  {
+    name: 'Twitter/X Profile',
+    extension: 'jpg',
+    description: 'Quadrado 400x400 • Avatar',
     width: 400,
     height: 400
   },
   {
     name: 'High Resolution',
     extension: 'png',
-    description: 'Original sem compressao',
+    description: 'Original 2048x2048 • Sem compressão',
     width: 2048,
     height: 2048
   },
   {
+    name: 'Print Quality',
+    extension: 'png',
+    description: '300 DPI • Para impressão',
+    width: 3000,
+    height: 3000
+  },
+  {
     name: 'Web Optimized',
     extension: 'webp',
-    description: 'Otimizado para web',
+    description: '1200x1200 • Otimizado para web',
     width: 1200,
     height: 1200
   }

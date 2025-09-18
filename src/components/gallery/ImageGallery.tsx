@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Download, ZoomIn, Trash, Star, Image as ImageIcon } from 'lucide-react'
+import { Heart, Download, ZoomIn, Trash, Star, Image as ImageIcon, Camera } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ImagePreviewModal } from './ImagePreviewModal'
@@ -136,7 +136,7 @@ export function ImageGallery({
       <Card variant="glass" padding="lg" className="text-center py-12">
         <div className="space-y-4">
           <div className="w-16 h-16 bg-surface rounded-full mx-auto flex items-center justify-center">
-            <span className="text-2xl">📷</span>
+            <Camera className="w-8 h-8 text-accent-gold" />
           </div>
           <h3 className="text-foreground text-lg font-semibold">Sem imagens ainda</h3>
           <p className="text-foreground-muted">
