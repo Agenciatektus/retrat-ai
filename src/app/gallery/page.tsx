@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { useGallery } from '@/hooks/useGallery'
+import { AppHeader } from '@/components/layout'
 import { 
   ImageGallery, 
   BatchOperations, 
@@ -62,13 +63,20 @@ export default function GalleryPage() {
   // Load images
   useEffect(() => {
     const loadImages = async () => {
-      if (!user) return
+      if (!user || authLoading) {
+        setLoading(false)
+        return
+      }
 
       try {
         setLoading(true)
         const response = await fetch('/api/assets?type=generated')
         
         if (!response.ok) {
+          if (response.status === 401) {
+            router.push('/login')
+            return
+          }
           throw new Error('Failed to load images')
         }
 
@@ -76,13 +84,16 @@ export default function GalleryPage() {
         setImages(data.assets || [])
       } catch (err) {
         console.error('Error loading images:', err)
+        setImages([]) // Set empty array on error to stop loading
       } finally {
         setLoading(false)
       }
     }
 
-    loadImages()
-  }, [user])
+    if (!authLoading) {
+      loadImages()
+    }
+  }, [user, authLoading, router])
 
   // Filter and sort images
   useEffect(() => {
@@ -215,12 +226,12 @@ export default function GalleryPage() {
     .map(id => images.find(img => img.id === id))
     .filter(Boolean) as GalleryImage[]
 
-  if (authLoading || loading) {
+  if (authLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="w-8 h-8 border-2 border-accent-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-foreground-muted">Carregando galeria...</p>
+          <p className="text-foreground-muted">Verificando autenticação...</p>
         </div>
       </div>
     )
@@ -247,6 +258,8 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
+      <AppHeader subtitle="Galeria de Retratos" />
+      
       <div className="bg-gradient-to-b from-surface-glass to-transparent">
         <div className="container mx-auto px-4 py-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -382,19 +395,29 @@ export default function GalleryPage() {
           )}
         </AnimatePresence>
 
+        {/* Loading State for Images */}
+        {loading && (
+          <div className="text-center py-12">
+            <div className="w-8 h-8 border-2 border-accent-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-foreground-muted">Carregando imagens...</p>
+          </div>
+        )}
+
         {/* Gallery */}
-        <ImageGallery
-          images={filteredImages}
-          loading={loading || galleryLoading}
-          variant={viewMode === 'grid' ? 'grid' : 'masonry'}
-          selectable={isSelectionMode}
-          onFavorite={handleFavorite}
-          onRate={handleRate}
-          onDownload={handleDownload}
-          onDelete={handleDelete}
-          onExport={handleExport}
-          onBatchSelect={handleBatchSelect}
-        />
+        {!loading && (
+          <ImageGallery
+            images={filteredImages}
+            loading={galleryLoading}
+            variant={viewMode === 'grid' ? 'grid' : 'masonry'}
+            selectable={isSelectionMode}
+            onFavorite={handleFavorite}
+            onRate={handleRate}
+            onDownload={handleDownload}
+            onDelete={handleDelete}
+            onExport={handleExport}
+            onBatchSelect={handleBatchSelect}
+          />
+        )}
 
         {/* Batch Operations */}
         {isSelectionMode && (
