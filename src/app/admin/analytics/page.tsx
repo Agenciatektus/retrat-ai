@@ -99,7 +99,7 @@ export default function AdminAnalyticsPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => router.push('/admin&apos;)}
+                  onClick={() => router.push('/admin')}
                   leftIcon={<ArrowLeft className="w-4 h-4" />}
                 >
                   Voltar

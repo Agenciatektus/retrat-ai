@@ -63,7 +63,7 @@ export function UserMenu({ user, profile, onSignOut, className }: UserMenuProps)
     {
       icon: Settings,
       label: 'Configurações',
-      action: () => router.push('/settings'),
+      action: () => router.push('/dashboard'), // Redirect to dashboard for now
       show: true
     },
     {

@@ -88,7 +88,7 @@ export default function LoginPage() {
     setLoading(true)
     try {
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google&apos;,
+        provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/dashboard`
         }

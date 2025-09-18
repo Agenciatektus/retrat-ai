@@ -197,7 +197,7 @@ export default function DashboardPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => router.push('/projects&apos;)}
+                  onClick={() => router.push('/projects')}
                 >
                   Ver todos
                 </Button>
