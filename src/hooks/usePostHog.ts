@@ -51,3 +51,4 @@ export function usePostHog() {
     posthog: typeof window !== 'undefined' ? posthog : null
   }
 }
+

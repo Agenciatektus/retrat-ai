@@ -176,3 +176,4 @@ export function loadThirdPartyScripts(): void {
     }, 2000) // Load after 2 seconds
   })
 }
+

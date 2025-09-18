@@ -106,7 +106,7 @@ export function ExportModal({ image, onClose }: ExportModalProps) {
 
       if (!publicId || !CLOUDINARY_CLOUD_NAME) {
         // Fallback to original URL when Cloudinary data is missing
-        downloadFile(image.url, `${image.filename || 'image&apos;}.${format.extension}`)
+        downloadFile(image.url, `${image.filename || 'image'}.${format.extension}`)
         return
       }
 
@@ -114,11 +114,11 @@ export function ExportModal({ image, onClose }: ExportModalProps) {
 
       downloadFile(
         transformedUrl,
-        `retrat-ai-${format.name.toLowerCase().replace(/\s+/g, '-&apos;)}.${format.extension}`
+        `retrat-ai-${format.name.toLowerCase().replace(/\s+/g, '-')}.${format.extension}`
       )
     } catch (error) {
       console.error('Download error:', error)
-      downloadFile(image.url, `${image.filename || 'image&apos;}.jpg`)
+      downloadFile(image.url, `${image.filename || 'image'}.jpg`)
     } finally {
       setDownloading(null)
     }
@@ -224,3 +224,4 @@ export function ExportModal({ image, onClose }: ExportModalProps) {
     </AnimatePresence>
   )
 }
+

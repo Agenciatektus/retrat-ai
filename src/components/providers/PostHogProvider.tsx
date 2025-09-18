@@ -43,3 +43,4 @@ export function PostHogProvider({ children }: PostHogProviderProps) {
 
   return <>{children}</>
 }
+

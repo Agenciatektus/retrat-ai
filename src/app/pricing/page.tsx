@@ -122,7 +122,7 @@ export default function PricingPage() {
                 padding="lg"
                 className={`relative ${
                   isPremium ? 'border-accent-gold/30 shadow-xl shadow-accent-gold/10' :
-                  isPopular ? 'border-blue-500/30' : '&apos;
+                  isPopular ? 'border-blue-500/30' : ''
                 }`}
               >
                 {isPopular && (
@@ -144,7 +144,7 @@ export default function PricingPage() {
                 )}
 
                 <CardHeader className="text-center">
-                  <div className=&ldquo;space-y-4&rdquo;>
+                  <div className="space-y-4">
                     <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center ${
                       isPremium
                         ? 'bg-gradient-to-br from-accent-gold to-amber-500'
@@ -152,7 +152,7 @@ export default function PricingPage() {
                           ? 'bg-gradient-to-br from-blue-500 to-blue-600'
                           : plan.id === 'pro'
                             ? 'bg-gradient-to-br from-green-500 to-green-600'
-                            : 'bg-surface-glass&apos;
+                            : 'bg-surface-glass'
                     }`}>
                       {plan.id === 'free' && <Star className="w-8 h-8 text-foreground-muted" />}
                       {plan.id === 'pro' && <Zap className="w-8 h-8 text-white" />}
@@ -168,7 +168,7 @@ export default function PricingPage() {
 
                     <div className="space-y-2">
                       <div className="flex items-baseline justify-center gap-2">
-                        <span className=&ldquo;text-4xl font-bold text-foreground&rdquo;>
+                        <span className="text-4xl font-bold text-foreground">
                           {copyCard?.price || (plan.id === 'free' ? 'Grátis' : `R$ ${plan.price_brl}`)}
                         </span>
                       </div>

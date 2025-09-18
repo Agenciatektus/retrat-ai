@@ -95,3 +95,4 @@ export function getOptimizedUrl(
 }
 
 export default cloudinary
+

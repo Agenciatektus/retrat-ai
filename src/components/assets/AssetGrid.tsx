@@ -53,7 +53,7 @@ export function AssetGrid({
     if (!onDelete || selectedAssets.size === 0) return
     
     const confirmMessage = `Tem certeza que deseja excluir ${selectedAssets.size} ${
-      selectedAssets.size === 1 ? 'imagem' : 'imagens&apos;
+      selectedAssets.size === 1 ? 'imagem' : 'imagens'
     }?`
     
     if (!confirm(confirmMessage)) return
@@ -180,9 +180,9 @@ export function AssetGrid({
               {/* Asset Info */}
               <div className="mt-2 space-y-1">
                 <p className="text-xs font-medium text-foreground truncate">
-                  {asset.filename || 'Sem nome&apos;}
+                  {asset.filename || 'Sem nome'}
                 </p>
-                <div className=&ldquo;flex items-center justify-between text-xs text-foreground-muted&rdquo;>
+                <div className="flex items-center justify-between text-xs text-foreground-muted">
                   <span>{formatFileSize(asset.size || 0)}</span>
                   <span>
                     {asset.metadata?.width && asset.metadata?.height
@@ -199,3 +199,4 @@ export function AssetGrid({
     </div>
   )
 }
+

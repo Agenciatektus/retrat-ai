@@ -164,16 +164,16 @@ export class DiretorVisualAgent {
     // Following the Master Prompt structure from 📖_Capítulo_9_—_O_Master_Prompt.md
     
     const basePrompt = [
-      &ldquo;Ultra-realistic editorial portrait, vertical format&rdquo;,
+      "Ultra-realistic editorial portrait, vertical format",
       `${components.lighting}`,
-      &ldquo;captured on 85mm lens at f/1.8, shallow depth of field&rdquo;,
+      "captured on 85mm lens at f/1.8, shallow depth of field",
       `${components.composition}`,
       `${components.subject}, wearing elegant attire with refined styling`,
       `${components.textures}, natural lighting interaction`,
-      &ldquo;background: softly blurred with professional studio ambiance&rdquo;,
+      "background: softly blurred with professional studio ambiance",
       `${components.effects}, professional post-processing`,
       `color palette: ${components.colors}, editorial mood`,
-    ].join('\n&apos;)
+    ].join('\n')
 
     if (components.customInstructions) {
       return `${basePrompt}\nAdditional direction: ${components.customInstructions}`
@@ -185,7 +185,7 @@ export class DiretorVisualAgent {
   private addAtmosphereAndMood(prompt: string, reference: Asset): string {
     // Based on 🧠📸_MÓDULO_10_REVISITADO_—_ATMOSFERA_FINAL_&_DIREÇÃO_DE_MOOD.md
     const atmosphere = "with a cinematic, professional atmosphere, editorial lighting that enhances natural beauty"
-    const mantra = &ldquo;same style, same lighting, same mood&rdquo;
+    const mantra = "same style, same lighting, same mood"
     
     return `${prompt}\n${atmosphere}\n${mantra}`
   }
@@ -217,3 +217,4 @@ export class DiretorVisualAgent {
 
 // Export singleton instance
 export const directorVisual = new DiretorVisualAgent()
+

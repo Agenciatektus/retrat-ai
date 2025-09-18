@@ -67,3 +67,4 @@ export async function flushPostHog() {
     console.error('Error flushing PostHog:', error)
   }
 }
+

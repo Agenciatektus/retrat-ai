@@ -147,3 +147,4 @@ export function useSentry() {
     Sentry: typeof window !== 'undefined' ? Sentry : null
   }
 }
+

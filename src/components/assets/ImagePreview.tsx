@@ -61,12 +61,12 @@ export function ImagePreview({
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div>
                 <h3 className="font-medium text-foreground">
-                  {asset.filename || 'Imagem&apos;}
+                  {asset.filename || 'Imagem'}
                 </h3>
-                <p className=&ldquo;text-sm text-foreground-muted&rdquo;>
+                <p className="text-sm text-foreground-muted">
                   {asset.metadata?.width && asset.metadata?.height
                     ? `${asset.metadata.width} × ${asset.metadata.height} px`
-                    : 'Dimensões não disponíveis&apos;
+                    : 'Dimensões não disponíveis'
                   }
                   {asset.size && ` • ${(asset.size / 1024 / 1024).toFixed(1)} MB`}
                 </p>
@@ -89,8 +89,8 @@ export function ImagePreview({
               >
                 <img
                   src={asset.url}
-                  alt={asset.filename || 'Preview&apos;}
-                  className=&ldquo;max-w-full max-h-full object-contain transition-transform duration-200&rdquo;
+                  alt={asset.filename || 'Preview'}
+                  className="max-w-full max-h-full object-contain transition-transform duration-200"
                   style={{ 
                     transform: `scale(${zoom})`,
                     cursor: zoom > 1 ? 'grab' : 'default'
@@ -172,3 +172,4 @@ export function ImagePreview({
     </AnimatePresence>
   )
 }
+

@@ -44,3 +44,4 @@ export interface ProjectsResponse {
 export interface ProjectResponse {
   project: ProjectWithAssets
 }
+

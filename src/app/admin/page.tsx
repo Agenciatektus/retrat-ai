@@ -272,8 +272,8 @@ export default function AdminPage() {
                     <div className="w-2 h-2 bg-info rounded-full"></div>
                     <span className="text-sm text-foreground">Tempo Médio de Geração</span>
                   </div>
-                  <span className=&ldquo;text-sm text-info font-medium&rdquo;>
-                    {statsLoading ? '...&apos; : `${stats?.avgGenerationTime || 0}s`}
+                  <span className="text-sm text-info font-medium">
+                    {statsLoading ? '...' : `${stats?.avgGenerationTime || 0}s`}
                   </span>
                 </div>
               </div>
@@ -359,3 +359,4 @@ export default function AdminPage() {
     </div>
   )
 }
+

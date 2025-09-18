@@ -72,7 +72,7 @@ export async function startGeneration(request: GenerationRequest): Promise<Gener
     }
   } catch (error) {
     console.error('Replicate generation error:', error)
-    throw new Error(`Generation failed: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
+    throw new Error(`Generation failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
 
@@ -92,7 +92,7 @@ export async function getGeneration(id: string): Promise<GenerationResult> {
     }
   } catch (error) {
     console.error('Error getting generation:', error)
-    throw new Error(`Failed to get generation: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
+    throw new Error(`Failed to get generation: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
 
@@ -104,8 +104,9 @@ export async function cancelGeneration(id: string): Promise<void> {
     await replicate.predictions.cancel(id)
   } catch (error) {
     console.error('Error canceling generation:', error)
-    throw new Error(`Failed to cancel generation: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
+    throw new Error(`Failed to cancel generation: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
 
 export default replicate
+

@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -40,7 +41,7 @@ interface AnalyticsData {
   topUsers: Array<{ email: string; generations: number }>
 }
 
-export default function AdminAnalyticsPage() {
+function AnalyticsContent() {
   const { user, profile, loading } = useAuth()
   const router = useRouter()
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null)
@@ -128,7 +129,7 @@ export default function AdminAnalyticsPage() {
 
               <Button
                 variant="outline"
-                size=&ldquo;sm&rdquo;
+                size="sm"
                 onClick={loadAnalytics}
                 disabled={analyticsLoading}
                 leftIcon={<RefreshCw className={`w-4 h-4 ${analyticsLoading ? 'animate-spin' : ''}`} />}
@@ -168,8 +169,8 @@ export default function AdminAnalyticsPage() {
                   <p className="text-2xl font-bold text-foreground">
                     {analyticsLoading ? '...' : analytics?.generationsWeek || 0}
                   </p>
-                  <p className=&ldquo;text-xs text-success&rdquo;>
-                    {analyticsLoading ? '...&apos; : `${(analytics?.successRate || 0).toFixed(1)}% sucesso`}
+                  <p className="text-xs text-success">
+                    {analyticsLoading ? '...' : `${(analytics?.successRate || 0).toFixed(1)}% sucesso`}
                   </p>
                 </div>
                 <Zap className="w-8 h-8 text-accent-gold" />
@@ -185,8 +186,8 @@ export default function AdminAnalyticsPage() {
                   <p className="text-2xl font-bold text-foreground">
                     R$ {analyticsLoading ? '...' : (analytics?.revenueWeek || 0).toFixed(0)}
                   </p>
-                  <p className=&ldquo;text-xs text-success&rdquo;>
-                    {analyticsLoading ? '...&apos; : `${(analytics?.conversionRate || 0).toFixed(1)}% conversão`}
+                  <p className="text-xs text-success">
+                    {analyticsLoading ? '...' : `${(analytics?.conversionRate || 0).toFixed(1)}% conversão`}
                   </p>
                 </div>
                 <DollarSign className="w-8 h-8 text-accent-gold" />
@@ -199,8 +200,8 @@ export default function AdminAnalyticsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground-muted">Tempo Médio</p>
-                  <p className=&ldquo;text-2xl font-bold text-foreground&rdquo;>
-                    {analyticsLoading ? '...&apos; : `${analytics?.avgGenerationTime || 0}s`}
+                  <p className="text-2xl font-bold text-foreground">
+                    {analyticsLoading ? '...' : `${analytics?.avgGenerationTime || 0}s`}
                   </p>
                   <p className="text-xs text-foreground-muted">por geração</p>
                 </div>
@@ -343,3 +344,30 @@ export default function AdminAnalyticsPage() {
     </div>
   )
 }
+
+function LoadingAnalytics() {
+  return (
+    <div className="min-h-screen bg-background p-6">
+      <div className="max-w-7xl mx-auto space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="w-8 h-8 bg-surface animate-pulse rounded"></div>
+          <div className="w-48 h-8 bg-surface animate-pulse rounded"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-32 bg-surface animate-pulse rounded-lg"></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function AdminAnalyticsPage() {
+  return (
+    <Suspense fallback={<LoadingAnalytics />}>
+      <AnalyticsContent />
+    </Suspense>
+  )
+}
+

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { deleteUserData } from '@/lib/security/gdpr'
-import * as Sentry from '@sentry/nextjs'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
+
+import * as Sentry from '@sentry/nextjs'
 
 // DELETE /api/gdpr/delete - Delete user data for GDPR compliance
 export async function DELETE(request: NextRequest) {
@@ -81,3 +82,4 @@ export async function DELETE(request: NextRequest) {
     }
   )
 }
+

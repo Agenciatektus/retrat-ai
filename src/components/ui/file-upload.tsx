@@ -73,9 +73,9 @@ export function FileUpload({
       errors.forEach((error: any) => {
         if (error.code === 'file-too-large') {
           newErrors.push(`${file.name} é muito grande (máx. ${maxSize / 1024 / 1024}MB)`)
-        } else if (error.code === 'file-invalid-type&apos;) {
+        } else if (error.code === 'file-invalid-type') {
           newErrors.push(`${file.name} não é um tipo de arquivo suportado`)
-        } else if (error.code === 'too-many-files&apos;) {
+        } else if (error.code === 'too-many-files') {
           newErrors.push(`Máximo de ${maxFiles} arquivos permitidos`)
         }
       })
@@ -218,9 +218,9 @@ export function FileUpload({
             onClick={handleUpload}
             disabled={!canUpload}
             leftIcon={uploading ? undefined : <Upload className="w-4 h-4" />}
-            className=&ldquo;w-full&rdquo;
+            className="w-full"
           >
-            {uploading ? 'Enviando...&apos; : `Enviar ${files.length} arquivo${files.length > 1 ? 's' : ''}`}
+            {uploading ? 'Enviando...' : `Enviar ${files.length} arquivo${files.length > 1 ? 's' : ''}`}
           </Button>
         )}
 
@@ -265,9 +265,9 @@ export function FileUpload({
           <Upload className="w-12 h-12 text-foreground-muted mx-auto mb-4" />
 
           <div className="space-y-2">
-            <p className=&ldquo;font-medium text-foreground&rdquo;>
+            <p className="font-medium text-foreground">
               {isDragActive
-                ? 'Solte os arquivos aqui&apos;
+                ? 'Solte os arquivos aqui'
                 : `Arraste e solte ou clique para enviar`
               }
             </p>
@@ -340,9 +340,9 @@ export function FileUpload({
           onClick={handleUpload}
           disabled={!canUpload}
           leftIcon={uploading ? undefined : <Upload className="w-4 h-4" />}
-          className=&ldquo;w-full&rdquo;
+          className="w-full"
         >
-          {uploading ? 'Enviando arquivos...&apos; : `Enviar ${files.length} arquivo${files.length > 1 ? 's' : ''}`}
+          {uploading ? 'Enviando arquivos...' : `Enviar ${files.length} arquivo${files.length > 1 ? 's' : ''}`}
         </Button>
       )}
 

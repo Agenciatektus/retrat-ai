@@ -118,7 +118,7 @@ export function GenerationPanel({
                 className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-colors ${
                   selectedUserPhotos.includes(photo.id)
                     ? 'border-accent-gold'
-                    : 'border-border hover:border-accent-gold/50&apos;
+                    : 'border-border hover:border-accent-gold/50'
                 }`}
                 onClick={() => toggleUserPhoto(photo.id)}
               >
@@ -142,14 +142,14 @@ export function GenerationPanel({
           <h4 className="font-medium text-foreground mb-3">
             Referência de estilo
           </h4>
-          <div className=&ldquo;grid grid-cols-2 gap-3&rdquo;>
+          <div className="grid grid-cols-2 gap-3">
             {references.map((reference) => (
               <div
                 key={reference.id}
                 className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-colors ${
                   selectedReference === reference.id
                     ? 'border-accent-gold'
-                    : 'border-border hover:border-accent-gold/50&apos;
+                    : 'border-border hover:border-accent-gold/50'
                 }`}
                 onClick={() => setSelectedReference(reference.id)}
               >
@@ -268,7 +268,7 @@ export function GenerationPanel({
               className="border border-border rounded-lg p-4 bg-surface"
             >
               <h5 className="font-medium text-foreground mb-2">Preview do Prompt:</h5>
-              <pre className=&ldquo;text-sm text-foreground-muted whitespace-pre-wrap&rdquo;>
+              <pre className="text-sm text-foreground-muted whitespace-pre-wrap">
                 {`Ultra-realistic editorial portrait, vertical format
 soft diffused window light with warm tone shadows
 captured on 85mm lens at f/1.8, shallow depth of field
@@ -291,3 +291,4 @@ same style, same lighting, same mood`}
     </Card>
   )
 }
+

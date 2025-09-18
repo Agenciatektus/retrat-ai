@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from 'react'
-import { getCLS, getFCP, getFID, getLCP, getTTFB, Metric } from 'web-vitals'
+import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from 'web-vitals'
 import { usePostHog } from '@/hooks/usePostHog'
 import { useSentry } from '@/hooks/useSentry'
 
@@ -42,11 +42,11 @@ export function WebVitalsProvider({ children }: WebVitalsProviderProps) {
     }
 
     // Track all Core Web Vitals
-    getCLS(sendToAnalytics)
-    getFCP(sendToAnalytics)
-    getFID(sendToAnalytics)
-    getLCP(sendToAnalytics)
-    getTTFB(sendToAnalytics)
+    onCLS(sendToAnalytics)
+    onFCP(sendToAnalytics)
+    onINP(sendToAnalytics) // FID was replaced by INP in web-vitals v4+
+    onLCP(sendToAnalytics)
+    onTTFB(sendToAnalytics)
 
     // Performance optimizations
     optimizePerformance()
@@ -96,3 +96,4 @@ function optimizePerformance() {
     }
   })
 }
+

@@ -25,3 +25,4 @@ export function initPostHog() {
 }
 
 export { posthog }
+

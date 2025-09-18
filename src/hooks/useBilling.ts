@@ -97,7 +97,7 @@ export function useBilling(): UseBillingReturn {
       const response = await fetch('/api/billing/portal', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json&apos;,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           return_url: `${window.location.origin}/billing`,

@@ -79,7 +79,7 @@ export function getResponsiveImageSrcSet(
       })
       return `${url} ${width}w`
     })
-    .join(', &apos;)
+    .join(', ')
 }
 
 /**
@@ -121,7 +121,7 @@ export function getPlaceholderImageUrl(
         fetch_format: 'auto',
         crop: 'fill',
         effect: 'blur:1000',
-        flags: 'progressive&apos;
+        flags: 'progressive'
       }
     ],
     secure: true
@@ -194,3 +194,4 @@ export function calculateOptimalDimensions(
 
   return { width: optimalWidth, height: optimalHeight }
 }
+

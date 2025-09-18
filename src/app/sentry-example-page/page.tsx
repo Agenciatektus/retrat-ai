@@ -91,7 +91,7 @@ export default function Page() {
           align-items: center;
           gap: 16px;
           padding: 16px;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, &ldquo;Helvetica Neue&rdquo;, sans-serif;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
         }
 
         h1 {
@@ -207,3 +207,4 @@ export default function Page() {
     </div>
   );
 }
+

@@ -6,3 +6,4 @@ export { ImageComparison } from './ImageComparison'
 
 // Types
 export type { GalleryImage } from './ImageGallery'
+

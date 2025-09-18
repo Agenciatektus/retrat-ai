@@ -212,7 +212,7 @@ export default function DashboardPage() {
                     key={project.id}
                     variant="elevated"
                     hover
-                    className=&ldquo;cursor-pointer&rdquo;
+                    className="cursor-pointer"
                     onClick={() => router.push(`/projects/${project.id}`)}
                   >
                     <div className="aspect-[4/3] bg-surface rounded-lg mb-3 flex items-center justify-center">

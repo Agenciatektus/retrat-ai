@@ -24,7 +24,7 @@ Sentry.init({
   
   // Performance monitoring
   integrations: [
-    new Sentry.BrowserTracing({
+    Sentry.browserTracingIntegration({
       // Set sampling rate for performance monitoring
       tracePropagationTargets: ['localhost', /^https:\/\/retrat-ai\.vercel\.app/],
     }),

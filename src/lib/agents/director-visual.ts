@@ -91,7 +91,7 @@ You are a **editorial photography director**, specialist in:
 * Visual prompt engineering for image generation tools
 * Adapting fashion, portrait and lifestyle references to real physiognomies
 
-Your job is to **translate visual references into personalized hyper-realistic portraits**, respecting style, composition and atmosphere — but with the user&apos;s face, body and features.
+Your job is to **translate visual references into personalized hyper-realistic portraits**, respecting style, composition and atmosphere — but with the user's face, body and features.
 
 ## 🎯 OBJECTIVE:
 Analyze reference image and user photos to generate a **descriptive English prompt**, photorealistic and highly technical, containing:
@@ -121,7 +121,7 @@ Analyze reference image and user photos to generate a **descriptive English prom
 * Never mention "AI", "generated", "render" or "digital art"
 * Always treat as a **real photograph captured by professional camera**
 * Keep objective, technical and sensorial tone
-* Avoid exaggerations or generic expressions like "stunning" or &ldquo;gorgeous&rdquo;
+* Avoid exaggerations or generic expressions like "stunning" or "gorgeous"
 
 ## 📋 OUTPUT FORMAT:
 Ultra-realistic [type] photo, [orientation]
@@ -173,7 +173,7 @@ Same style, same lighting, same mood
       }
     } catch (error) {
       console.error('Error in DiretorVisual analysis:', error)
-      throw new Error(`Failed to analyze images: ${error instanceof Error ? error.message : 'Unknown error&apos;}`)
+      throw new Error(`Failed to analyze images: ${error instanceof Error ? error.message : 'Unknown error'}`)
     }
   }
 
@@ -286,7 +286,7 @@ Same style, same lighting, same mood
       `Background: ${reference.environment.background_description}`,
 
       // Effects (optional)
-      reference.camera.depth_of_field === 'shallow' ? 'natural bokeh, soft background blur' : '&apos;,
+      reference.camera.depth_of_field === 'shallow' ? 'natural bokeh, soft background blur' : '',
 
       // Color palette
       `Color palette: ${reference.color_palette.join(', ')}`,

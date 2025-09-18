@@ -180,8 +180,8 @@ function BillingContent() {
                         <span className="text-2xl font-bold text-foreground">
                           {currentPlan.id === 'free' ? 'R$ 0' : `R$ ${(currentPlan.price_monthly / 100).toFixed(0)}`}
                         </span>
-                        {currentPlan.id !== 'free&apos; && (
-                          <span className=&ldquo;text-foreground-muted&rdquo;>/mês</span>
+                        {currentPlan.id !== 'free' && (
+                          <span className="text-foreground-muted">/mês</span>
                         )}
                       </div>
 
@@ -211,7 +211,7 @@ function BillingContent() {
                     )}
                   </div>
 
-                  {currentPlan.id === 'free&apos; && (
+                  {currentPlan.id === 'free' && (
                     <Button
                       variant="primary"
                       size="sm"
@@ -239,13 +239,13 @@ function BillingContent() {
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-foreground">Gerações esta semana</span>
-                      <span className=&ldquo;text-foreground font-medium&rdquo;>
-                        {usedGenerations}{totalQuota ? ` / ${totalQuota}` : ' (ilimitado)&apos;}
+                      <span className="text-foreground font-medium">
+                        {usedGenerations}{totalQuota ? ` / ${totalQuota}` : ' (ilimitado)'}
                       </span>
                     </div>
 
                     {totalQuota && (
-                      <div className=&ldquo;w-full bg-surface-glass rounded-full h-2&rdquo;>
+                      <div className="w-full bg-surface-glass rounded-full h-2">
                         <div
                           className={`h-2 rounded-full transition-all ${
                             usedGenerations >= totalQuota
@@ -261,12 +261,12 @@ function BillingContent() {
                       </div>
                     )}
 
-                    <div className=&ldquo;mt-2 text-sm text-foreground-muted&rdquo;>
+                    <div className="mt-2 text-sm text-foreground-muted">
                       {quotaRemaining === null
-                        ? 'Gerações ilimitadas&apos;
+                        ? 'Gerações ilimitadas'
                         : quotaRemaining > 0
                           ? `${quotaRemaining} gerações restantes`
-                          : 'Cota esgotada esta semana&apos;
+                          : 'Cota esgotada esta semana'
                       }
                     </div>
                   </div>
@@ -281,13 +281,13 @@ function BillingContent() {
                       {canGenerate ? (
                         <CheckCircle className="w-5 h-5 text-success" />
                       ) : (
-                        <AlertCircle className=&ldquo;w-5 h-5 text-warning&rdquo; />
+                        <AlertCircle className="w-5 h-5 text-warning" />
                       )}
                       <div>
-                        <h4 className={`font-medium ${canGenerate ? 'text-success' : 'text-warning&apos;}`}>
+                        <h4 className={`font-medium ${canGenerate ? 'text-success' : 'text-warning'}`}>
                           {canGenerate ? 'Pronto para gerar' : 'Cota esgotada'}
                         </h4>
-                        <p className={`text-sm ${canGenerate ? 'text-success/80' : 'text-warning/80&apos;}`}>
+                        <p className={`text-sm ${canGenerate ? 'text-success/80' : 'text-warning/80'}`}>
                           {canGenerate
                             ? 'Você pode criar novos retratos agora'
                             : 'Faça upgrade para continuar gerando'
@@ -354,7 +354,7 @@ function BillingContent() {
               <CardContent>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className=&ldquo;w-4 h-4 text-success flex-shrink-0&rdquo; />
+                    <CheckCircle className="w-4 h-4 text-success flex-shrink-0" />
                     <span>
                       {totalQuota ? `${totalQuota} gerações/semana` : 'Gerações ilimitadas'}
                     </span>

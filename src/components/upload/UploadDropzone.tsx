@@ -97,7 +97,7 @@ export function UploadDropzone({
       formData.append('type', type)
       
       files.forEach(file => {
-        formData.append('files&apos;, file)
+        formData.append('files', file)
       })
 
       const response = await fetch(`/api/projects/${projectId}/assets`, {
@@ -147,7 +147,7 @@ export function UploadDropzone({
       title: title || 'Suas Fotos',
       description: description || 'Envie de 1 a 5 fotos suas para gerar retratos',
       dragText: 'Solte suas fotos aqui',
-      clickText: 'ou clique para selecionar&apos;,
+      clickText: 'ou clique para selecionar',
     }
   }
 
@@ -161,7 +161,7 @@ export function UploadDropzone({
           <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
             {text.title}
           </h3>
-          <p className=&ldquo;text-foreground-muted text-sm&rdquo;>
+          <p className="text-foreground-muted text-sm">
             {text.description}
           </p>
         </div>
@@ -179,7 +179,7 @@ export function UploadDropzone({
         >
           <input {...getInputProps()} />
           <Upload className={`w-12 h-12 mx-auto mb-4 ${
-            isDragActive ? 'text-accent-gold' : 'text-foreground-muted&apos;
+            isDragActive ? 'text-accent-gold' : 'text-foreground-muted'
           }`} />
           <p className="text-foreground mb-2">
             {isDragActive ? text.dragText : text.dragText}
@@ -264,8 +264,8 @@ export function UploadDropzone({
                 className="flex items-center gap-2 p-3 bg-error/10 border border-error rounded-lg"
               >
                 <AlertCircle className="w-4 h-4 text-error flex-shrink-0" />
-                <p className=&ldquo;text-sm text-error&rdquo;>
-                  {error.file ? `${error.file}: ` : '&apos;}{error.message}
+                <p className="text-sm text-error">
+                  {error.file ? `${error.file}: ` : ''}{error.message}
                 </p>
               </div>
             ))}
@@ -283,7 +283,7 @@ export function UploadDropzone({
             >
               {uploading ? (
                 <div className="flex items-center gap-2">
-                  <div className=&ldquo;w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin&rdquo; />
+                  <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                   Enviando...
                 </div>
               ) : (
@@ -296,3 +296,4 @@ export function UploadDropzone({
     </Card>
   )
 }
+

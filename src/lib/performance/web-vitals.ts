@@ -129,7 +129,7 @@ export function optimizeCLS() {
 function initializeNonCriticalFeatures() {
   // Initialize analytics
   if (typeof window !== 'undefined' && window.posthog) {
-    window.posthog.capture('app_initialized&apos;, {
+    window.posthog.capture('app_initialized', {
       timestamp: Date.now(),
       user_agent: navigator.userAgent,
       viewport: `${window.innerWidth}x${window.innerHeight}`
@@ -176,3 +176,4 @@ if (typeof window !== 'undefined') {
     optimizeCLS()
   })
 }
+

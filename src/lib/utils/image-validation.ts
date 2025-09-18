@@ -21,7 +21,7 @@ export function validateImageFile(file: File): ImageValidationError | null {
   if (!ALLOWED_MIME_TYPES.includes(file.type as typeof ALLOWED_MIME_TYPES[number])) {
     return {
       code: 'INVALID_TYPE',
-      message: `Tipo de arquivo não suportado. Use apenas: ${ALLOWED_MIME_TYPES.join(', &apos;)}`,
+      message: `Tipo de arquivo não suportado. Use apenas: ${ALLOWED_MIME_TYPES.join(', ')}`,
       file: file.name,
     }
   }
@@ -45,7 +45,7 @@ export function validateImageFiles(files: File[]): ImageValidationError[] {
   // Check total number of files
   if (files.length > MAX_FILES_PER_PROJECT) {
     errors.push({
-      code: 'TOO_MANY_FILES&apos;,
+      code: 'TOO_MANY_FILES',
       message: `Máximo de ${MAX_FILES_PER_PROJECT} arquivos permitidos`,
     })
     return errors // Return early if too many files
@@ -93,3 +93,4 @@ export function getImageDimensions(file: File): Promise<{ width: number; height:
     img.src = url
   })
 }
+

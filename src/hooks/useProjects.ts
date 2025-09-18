@@ -55,7 +55,7 @@ export function useProjects() {
       
       return result.project
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
+      setError(err instanceof Error ? err.message : 'Unknown error')
       return null
     }
   }
@@ -84,7 +84,7 @@ export function useProjects() {
       
       return result.project
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
+      setError(err instanceof Error ? err.message : 'Unknown error')
       return null
     }
   }
@@ -105,7 +105,7 @@ export function useProjects() {
       
       return true
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error&apos;)
+      setError(err instanceof Error ? err.message : 'Unknown error')
       return false
     }
   }
@@ -174,3 +174,4 @@ export function useProject(id: string) {
     refetch: fetchProject,
   }
 }
+

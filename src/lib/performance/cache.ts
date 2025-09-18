@@ -144,8 +144,8 @@ export function getCacheHeaders(configKey: keyof typeof CACHE_CONFIGS): Record<s
   
   return {
     'Cache-Control': `public, max-age=${config.ttl}, stale-while-revalidate=${config.staleWhileRevalidate || config.ttl}`,
-    'CDN-Cache-Control&apos;: `public, max-age=${config.ttl}`,
-    'Vercel-CDN-Cache-Control&apos;: `public, max-age=${config.ttl}`,
+    'CDN-Cache-Control': `public, max-age=${config.ttl}`,
+    'Vercel-CDN-Cache-Control': `public, max-age=${config.ttl}`,
   }
 }
 
@@ -186,3 +186,4 @@ export function useCachedData<T>(
     refetch: fetchData
   }
 }
+
