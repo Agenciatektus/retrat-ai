@@ -1,23 +1,56 @@
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="text-center max-w-md">
-        <h1 className="text-2xl font-bold mb-2">
-          404 - Página não encontrada
-        </h1>
-        
-        <p className="mb-8">
-          A página que você está procurando não existe.
-        </p>
+    <html>
+      <body style={{ 
+        margin: 0, 
+        minHeight: '100vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        backgroundColor: '#0a0a0a',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        padding: '16px'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '400px'
+        }}>
+          <h1 style={{ 
+            fontSize: '24px', 
+            fontWeight: 'bold', 
+            marginBottom: '8px',
+            color: '#ffffff'
+          }}>
+            404 - Página não encontrada
+          </h1>
+          
+          <p style={{ 
+            marginBottom: '32px',
+            color: 'rgba(255, 255, 255, 0.7)'
+          }}>
+            A página que você está procurando não existe.
+          </p>
 
-        <a 
-          href="/"
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700"
-        >
-          Voltar para Home
-        </a>
-      </div>
-    </div>
+          <a 
+            href="/"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              padding: '12px 24px',
+              borderRadius: '8px',
+              fontWeight: '500',
+              backgroundColor: '#3b82f6',
+              color: 'white',
+              textDecoration: 'none'
+            }}
+          >
+            Voltar para Home
+          </a>
+        </div>
+      </body>
+    </html>
   )
 }
 
