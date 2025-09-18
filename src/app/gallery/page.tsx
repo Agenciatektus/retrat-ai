@@ -20,7 +20,7 @@ import {
   SortAsc, 
   Heart, 
   Star,
-  Compare,
+  GitCompare,
   Download,
   Trash,
   AlertTriangle
@@ -339,7 +339,7 @@ export default function GalleryPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => setShowComparison(true)}
-                  leftIcon={<Compare className="w-4 h-4" />}
+                  leftIcon={<GitCompare className="w-4 h-4" />}
                   className="border-accent-gold text-accent-gold hover:bg-accent-gold hover:text-black"
                 >
                   Comparar ({selectedImages.length})

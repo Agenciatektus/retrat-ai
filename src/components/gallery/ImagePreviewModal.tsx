@@ -146,12 +146,6 @@ export function ImagePreviewModal({
     }
   }
 
-  const handleExport = () => {
-    if (image && onExport) {
-      onExport(image)
-    }
-  }
-
   const handleRate = (rating: number) => {
     if (image && onRate) {
       onRate(image.id, rating)

@@ -4,6 +4,9 @@ import { stripeService } from '@/lib/services/stripe'
 import { billingService } from '@/lib/services/billing'
 import { SubscriptionStatus } from '@/lib/types/billing'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+
 // POST /api/webhooks/stripe - Handle Stripe webhook events
 export async function POST(request: NextRequest) {
   try {
