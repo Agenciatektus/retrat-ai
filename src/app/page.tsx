@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Camera, Sparkles, CheckCircle, Users, Zap, Star, Palette } from "lucide-react"
+import { Camera, Sparkles, CheckCircle, Users, Zap, Star, Palette, FolderPlus, Upload, Image } from "lucide-react"
 
 export default function Home() {
   return (
@@ -70,8 +70,8 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Step 1 */}
             <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                📂
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
+                <FolderPlus className="w-8 h-8" />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Crie seu Projeto
@@ -83,8 +83,8 @@ export default function Home() {
 
             {/* Step 2 */}
             <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                📸
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
+                <Upload className="w-8 h-8" />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Envie suas Fotos Pessoais
@@ -96,8 +96,8 @@ export default function Home() {
 
             {/* Step 3 */}
             <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                🖼️
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
+                <Image className="w-8 h-8" />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Escolha uma Referência
