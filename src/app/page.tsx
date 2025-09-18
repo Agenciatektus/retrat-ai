@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Camera, Sparkles, CheckCircle, Users, Zap, Star, Palette } from "lucide-react"
 
 export default function Home() {
   return (
@@ -8,9 +9,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 flex items-center justify-center rounded" style={{ color: "var(--accent-gold)" }}>
-                📷
-              </div>
+              <Camera className="w-8 h-8" style={{ color: "var(--accent-gold)" }} />
               <span className="font-heading text-2xl font-bold" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Retrat.ai
               </span>
@@ -110,8 +109,8 @@ export default function Home() {
 
             {/* Step 4 */}
             <div className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--surface-glass)", backdropFilter: "var(--backdrop-blur)" }}>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
-                ⚡
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold)", color: "#000" }}>
+                <Zap className="w-8 h-8" />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Receba seu Retrato Pronto
@@ -135,7 +134,7 @@ export default function Home() {
             {/* Benefit 1 */}
             <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
               <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
-                💰
+                <Star className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Economia Radical
@@ -148,7 +147,7 @@ export default function Home() {
             {/* Benefit 2 */}
             <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
               <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
-                ⚡
+                <Zap className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Velocidade Incomparável
@@ -161,7 +160,7 @@ export default function Home() {
             {/* Benefit 3 */}
             <div className="p-6 rounded-xl" style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}>
               <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
-                🎨
+                <Palette className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               </div>
               <h3 className="font-heading text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Versatilidade Total
@@ -200,9 +199,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="w-6 h-6 flex items-center justify-center" style={{ color: "var(--accent-gold)" }}>
-                📷
-              </div>
+              <Camera className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
               <span className="font-heading text-xl font-bold" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Retrat.ai
               </span>
