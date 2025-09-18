@@ -92,8 +92,10 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card variant="glass" hover className="cursor-pointer" onClick={handleCreateProject}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Plus className="w-6 h-6 text-accent-gold" />
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Plus className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
+              </div>
+              <CardTitle className="text-xl font-semibold" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Novo Projeto
               </CardTitle>
             </CardHeader>
@@ -109,8 +111,10 @@ export default function DashboardPage() {
 
           <Card variant="glass" hover className="cursor-pointer" onClick={() => router.push('/projects')}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Camera className="w-6 h-6 text-accent-gold" />
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Camera className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
+              </div>
+              <CardTitle className="text-xl font-semibold" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Meus Projetos
               </CardTitle>
             </CardHeader>
@@ -124,10 +128,12 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card variant="glass" hover className="cursor-pointer">
+          <Card variant="glass" hover className="cursor-pointer" onClick={() => router.push('/gallery')}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Sparkles className="w-6 h-6 text-accent-gold" />
+              <div className="w-12 h-12 mb-4 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--accent-gold-muted)" }}>
+                <Sparkles className="w-6 h-6" style={{ color: "var(--accent-gold)" }} />
+              </div>
+              <CardTitle className="text-xl font-semibold" style={{ fontFamily: "var(--font-heading)", color: "var(--foreground)" }}>
                 Galeria
               </CardTitle>
             </CardHeader>

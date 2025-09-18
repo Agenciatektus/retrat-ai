@@ -31,24 +31,24 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
     const variants = {
       default: [
-        "bg-surface",
-        "border border-border"
+        "border",
+        "bg-surface border-border"
       ],
       glass: [
-        "glass-card"
+        "bg-surface border border-border"
       ],
       elevated: [
-        "glass-subtle"
+        "bg-surface border border-border"
       ],
       outline: [
         "border border-border-glass",
         "bg-transparent"
       ],
       borderless: [
-        "glass-borderless"
+        "bg-surface"
       ],
       clean: [
-        "glass-clean"
+        "bg-surface"
       ]
     }
 
