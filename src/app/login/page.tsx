@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button, Card, CardHeader, CardTitle, CardContent, Input } from '@/components/ui'
 import { AuthDebug } from '@/components/debug/AuthDebug'
+import { usePostHog } from '@/hooks/usePostHog'
 import { Mail, Eye, EyeOff, Chrome, Instagram } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -17,6 +18,7 @@ export default function LoginPage() {
 
   const router = useRouter()
   const supabase = createClient()
+  const { capture } = usePostHog()
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,8 +35,16 @@ export default function LoginPage() {
       if (error) {
         console.error('Login error:', error)
         setError(error.message)
+        capture('login_failed', {
+          method: 'email',
+          error: error.message
+        })
       } else {
         console.log('Login successful:', data)
+        capture('login_success', {
+          method: 'email',
+          user_id: data.user?.id
+        })
         // Let the middleware handle the redirect
         window.location.href = '/dashboard'
       }
