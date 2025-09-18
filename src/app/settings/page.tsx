@@ -6,9 +6,7 @@ import { AppHeader } from '@/components/layout'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
-import { Separator } from '@/components/ui/separator'
+// Using native HTML elements instead of missing UI components
 import { 
   User, 
   Bell, 
@@ -100,7 +98,7 @@ function SettingsContent() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Nome Completo</Label>
+                <label htmlFor="name" className="text-sm font-medium text-foreground">Nome Completo</label>
                 <Input
                   id="name"
                   defaultValue={profile?.full_name || ''}
@@ -109,7 +107,7 @@ function SettingsContent() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
                 <Input
                   id="email"
                   type="email"
@@ -121,7 +119,7 @@ function SettingsContent() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="bio">Bio</Label>
+              <label htmlFor="bio" className="text-sm font-medium text-foreground">Bio</label>
               <Input
                 id="bio"
                 placeholder="Conte um pouco sobre você..."
@@ -130,7 +128,7 @@ function SettingsContent() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Nova Senha</Label>
+              <label htmlFor="password" className="text-sm font-medium text-foreground">Nova Senha</label>
               <div className="relative">
                 <Input
                   id="password"
@@ -171,51 +169,66 @@ function SettingsContent() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Notificações por Email</Label>
+                <label className="text-base font-medium text-foreground">Notificações por Email</label>
                 <p className="text-sm text-foreground-muted">
                   Receba atualizações importantes por email
                 </p>
               </div>
-              <Switch
-                checked={notifications.email}
-                onCheckedChange={(checked) => 
-                  setNotifications(prev => ({ ...prev, email: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={notifications.email}
+                  onChange={(e) => 
+                    setNotifications(prev => ({ ...prev, email: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
 
-            <Separator />
+            <div className="border-t border-border"></div>
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Notificações Push</Label>
+                <label className="text-base font-medium text-foreground">Notificações Push</label>
                 <p className="text-sm text-foreground-muted">
                   Receba notificações no navegador
                 </p>
               </div>
-              <Switch
-                checked={notifications.push}
-                onCheckedChange={(checked) => 
-                  setNotifications(prev => ({ ...prev, push: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={notifications.push}
+                  onChange={(e) => 
+                    setNotifications(prev => ({ ...prev, push: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
 
-            <Separator />
+            <div className="border-t border-border"></div>
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Marketing</Label>
+                <label className="text-base font-medium text-foreground">Marketing</label>
                 <p className="text-sm text-foreground-muted">
                   Receba dicas, novidades e ofertas especiais
                 </p>
               </div>
-              <Switch
-                checked={notifications.marketing}
-                onCheckedChange={(checked) => 
-                  setNotifications(prev => ({ ...prev, marketing: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={notifications.marketing}
+                  onChange={(e) => 
+                    setNotifications(prev => ({ ...prev, marketing: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
           </CardContent>
         </Card>
@@ -231,51 +244,66 @@ function SettingsContent() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Salvamento Automático</Label>
+                <label className="text-base font-medium text-foreground">Salvamento Automático</label>
                 <p className="text-sm text-foreground-muted">
                   Salve automaticamente seu trabalho
                 </p>
               </div>
-              <Switch
-                checked={preferences.autoSave}
-                onCheckedChange={(checked) => 
-                  setPreferences(prev => ({ ...prev, autoSave: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={preferences.autoSave}
+                  onChange={(e) => 
+                    setPreferences(prev => ({ ...prev, autoSave: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
 
-            <Separator />
+            <div className="border-t border-border"></div>
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Alta Qualidade</Label>
+                <label className="text-base font-medium text-foreground">Alta Qualidade</label>
                 <p className="text-sm text-foreground-muted">
                   Gerar imagens em máxima qualidade (mais lento)
                 </p>
               </div>
-              <Switch
-                checked={preferences.highQuality}
-                onCheckedChange={(checked) => 
-                  setPreferences(prev => ({ ...prev, highQuality: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={preferences.highQuality}
+                  onChange={(e) => 
+                    setPreferences(prev => ({ ...prev, highQuality: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
 
-            <Separator />
+            <div className="border-t border-border"></div>
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="text-base">Modo Escuro</Label>
+                <label className="text-base font-medium text-foreground">Modo Escuro</label>
                 <p className="text-sm text-foreground-muted">
                   Interface com tema escuro
                 </p>
               </div>
-              <Switch
-                checked={preferences.darkMode}
-                onCheckedChange={(checked) => 
-                  setPreferences(prev => ({ ...prev, darkMode: checked }))
-                }
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={preferences.darkMode}
+                  onChange={(e) => 
+                    setPreferences(prev => ({ ...prev, darkMode: e.target.checked }))
+                  }
+                />
+                <div className="w-11 h-6 bg-surface peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-gold/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-gold"></div>
+              </label>
             </div>
           </CardContent>
         </Card>
@@ -309,7 +337,7 @@ function SettingsContent() {
               </Button>
             </div>
 
-            <Separator />
+            <div className="border-t border-border"></div>
 
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
               <div className="flex items-start gap-3">
