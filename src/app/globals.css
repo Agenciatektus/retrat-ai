@@ -7,6 +7,7 @@
 :root {
   /* Glass Editorial Theme Colors */
   --background: #0A0A0A;
+  --background-alpha: rgba(10, 10, 10, 0.9);
   --surface: #141414;
   --surface-glass: rgba(20, 20, 20, 0.4);
   --surface-elevated: #1A1A1A;
