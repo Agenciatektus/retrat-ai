@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { Button, Card, CardHeader, CardTitle, CardContent, Input } from '@/components/ui'
 import { AuthDebug } from '@/components/debug/AuthDebug'
 import { usePostHog } from '@/hooks/usePostHog'
+import { useSentry } from '@/hooks/useSentry'
 import { Mail, Eye, EyeOff, Chrome, Instagram } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -19,41 +20,68 @@ export default function LoginPage() {
   const router = useRouter()
   const supabase = createClient()
   const { capture } = usePostHog()
+  const { traceUIAction, captureException, logger, setUser } = useSentry()
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-    setError('')
+    
+    return traceUIAction('Email Login', async () => {
+      setLoading(true)
+      setError('')
 
-    try {
-      console.log('Attempting login with email:', email)
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      try {
+        logger?.info('Attempting email login', { email })
+        
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
 
-      if (error) {
-        console.error('Login error:', error)
-        setError(error.message)
-        capture('login_failed', {
+        if (error) {
+          logger?.error('Login failed', { error: error.message, email })
+          captureException(new Error(`Login failed: ${error.message}`), {
+            email,
+            method: 'email',
+            errorCode: error.status
+          })
+          setError(error.message)
+          capture('login_failed', {
+            method: 'email',
+            error: error.message
+          })
+        } else {
+          logger?.info('Login successful', { userId: data.user?.id, email })
+          
+          // Set user context in Sentry
+          setUser({
+            id: data.user?.id || '',
+            email: data.user?.email || '',
+            username: data.user?.user_metadata?.full_name || ''
+          })
+          
+          capture('login_success', {
+            method: 'email',
+            user_id: data.user?.id
+          })
+          
+          // Let the middleware handle the redirect
+          window.location.href = '/dashboard'
+        }
+      } catch (err) {
+        logger?.fatal('Unexpected login error', { error: err, email })
+        captureException(err as Error, {
+          email,
           method: 'email',
-          error: error.message
+          context: 'handleEmailLogin'
         })
-      } else {
-        console.log('Login successful:', data)
-        capture('login_success', {
-          method: 'email',
-          user_id: data.user?.id
-        })
-        // Let the middleware handle the redirect
-        window.location.href = '/dashboard'
+        setError('An unexpected error occurred')
+      } finally {
+        setLoading(false)
       }
-    } catch (err) {
-      console.error('Unexpected login error:', err)
-      setError('An unexpected error occurred')
-    } finally {
-      setLoading(false)
-    }
+    }, {
+      email,
+      method: 'email'
+    })
   }
 
   const handleGoogleLogin = async () => {
