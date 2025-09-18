@@ -1,10 +1,11 @@
 "use client"
 
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Home, ArrowLeft, Search } from 'lucide-react'
 
-export default function NotFound() {
+function NotFoundContent() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: "var(--background)" }}>
       <Card variant="glass" className="text-center max-w-md">
@@ -43,6 +44,30 @@ export default function NotFound() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+function NotFoundLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: "var(--background)" }}>
+      <div className="text-center max-w-md">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-surface animate-pulse"></div>
+        <div className="h-8 bg-surface animate-pulse rounded mb-2"></div>
+        <div className="h-4 bg-surface animate-pulse rounded mb-8"></div>
+        <div className="flex gap-3 justify-center">
+          <div className="w-32 h-12 bg-surface animate-pulse rounded"></div>
+          <div className="w-24 h-12 bg-surface animate-pulse rounded"></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function NotFound() {
+  return (
+    <Suspense fallback={<NotFoundLoading />}>
+      <NotFoundContent />
+    </Suspense>
   )
 }
 
