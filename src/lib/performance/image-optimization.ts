@@ -195,3 +195,5 @@ export function calculateOptimalDimensions(
   return { width: optimalWidth, height: optimalHeight }
 }
 
+
+

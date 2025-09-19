@@ -291,3 +291,4 @@ WHERE p.user_id = auth.uid();
 -- Grant access to views
 GRANT SELECT ON user_projects_view TO authenticated;
 GRANT SELECT ON user_assets_view TO authenticated;
+

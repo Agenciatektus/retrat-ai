@@ -96,12 +96,49 @@ export async function POST(
       }
     }
 
-    // Use DiretorVisual agent to analyze and generate prompt
-    const promptResult = await directorVisual.analyzeAndGeneratePrompt(
-      reference,
-      userPhotos,
-      customInstructions
-    )
+    // Get existing analysis for the reference image
+    const { data: existingAnalysis } = await supabase
+      .from('reference_analyses')
+      .select('*')
+      .eq('project_id', params.id)
+      .eq('user_id', user.id)
+      .eq('image_url', reference.url)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single()
+
+    let promptResult: any
+
+    if (existingAnalysis) {
+      // Use existing analysis and adapt prompt for user
+      const { photographyAnalyzer } = await import('@/lib/agents/photography-analyzer')
+      
+      // Combine master prompt with user photo description
+      const userPhotoDescription = `a person with natural features, ${userPhotos.length > 1 ? 'multiple reference photos available' : 'single reference photo'}`
+      
+      // Adapt the master prompt to include the user
+      const adaptedPrompt = existingAnalysis.master_prompt.replace(
+        /a (woman|man|person)/gi, 
+        userPhotoDescription
+      )
+
+      promptResult = {
+        prompt: customInstructions 
+          ? `${adaptedPrompt}\nAdditional instructions: ${customInstructions}`
+          : adaptedPrompt,
+        analysis: existingAnalysis.analysis,
+        confidence: existingAnalysis.confidence_score,
+        source: 'existing_analysis'
+      }
+    } else {
+      // Fallback to DiretorVisual agent if no analysis exists
+      promptResult = await directorVisual.analyzeAndGeneratePrompt(
+        reference,
+        userPhotos,
+        customInstructions
+      )
+      promptResult.source = 'director_visual'
+    }
 
     // Create generation record in database
     const { data: generation, error: generationError } = await supabase

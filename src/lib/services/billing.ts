@@ -10,7 +10,9 @@ import {
 } from '@/lib/types/billing'
 
 export class BillingService {
-  private supabase = createClient()
+  private getSupabaseClient() {
+    return createClient()
+  }
 
   /**
    * Get all available subscription plans
@@ -25,7 +27,8 @@ export class BillingService {
    * Get user's current subscription with plan details
    */
   async getUserSubscription(userId: string): Promise<UserSubscriptionWithPlan | null> {
-    const { data, error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data, error } = await supabase
       .from('subscriptions')
       .select('*')
       .eq('user_id', userId)
@@ -59,7 +62,8 @@ export class BillingService {
 
     const currentMonth = new Date().toISOString().slice(0, 7) // YYYY-MM format
     
-    const { data, error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data, error } = await supabase
       .from('usage')
       .select('*')
       .eq('user_id', userId)
@@ -113,7 +117,8 @@ export class BillingService {
    * Check if user can generate (within quota)
    */
   async canUserGenerate(userId: string): Promise<boolean> {
-    const { data, error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data, error } = await supabase
       .rpc('can_user_generate', { user_uuid: userId })
 
     if (error) {
@@ -128,7 +133,8 @@ export class BillingService {
    * Increment user's generation usage
    */
   async incrementUsage(userId: string): Promise<void> {
-    const { error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { error } = await supabase
       .rpc('increment_user_usage', { user_uuid: userId })
 
     if (error) {
@@ -149,7 +155,8 @@ export class BillingService {
     currentPeriodStart: Date
     currentPeriodEnd: Date
   }): Promise<UserSubscription> {
-    const { data: subscription, error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data: subscription, error } = await supabase
       .from('user_subscriptions')
       .insert({
         user_id: data.userId,
@@ -192,7 +199,8 @@ export class BillingService {
       updateData.canceled_at = updates.canceledAt ? updates.canceledAt.toISOString() : null
     }
 
-    const { data, error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data, error } = await supabase
       .from('user_subscriptions')
       .update(updateData)
       .eq('stripe_subscription_id', stripeSubscriptionId)
@@ -254,7 +262,8 @@ export class BillingService {
     cancelUrl: string
   ): Promise<string> {
     // Get plan details
-    const { data: plan, error: planError } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { data: plan, error: planError } = await supabase
       .from('subscription_plans')
       .select('*')
       .eq('id', planId)
@@ -269,7 +278,7 @@ export class BillingService {
     }
 
     // Get user info for customer creation
-    const { data: { user }, error: authError } = await this.supabase.auth.getUser()
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) {
       throw new Error('User not authenticated')
     }
@@ -328,7 +337,8 @@ export class BillingService {
     subscription_id?: string
     data: Record<string, unknown>
   }): Promise<void> {
-    const { error } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { error } = await supabase
       .from('stripe_events')
       .insert({
         stripe_event_id: event.stripe_event_id,
@@ -356,7 +366,8 @@ export class BillingService {
       updateData.error_message = error
     }
 
-    const { error: dbError } = await this.supabase
+    const supabase = this.getSupabaseClient()
+    const { error: dbError } = await supabase
       .from('stripe_events')
       .update(updateData)
       .eq('stripe_event_id', stripeEventId)

@@ -34,6 +34,17 @@ export interface UserSubscriptionWithPlan extends UserSubscription {
   plan: SubscriptionPlan
 }
 
+export type UsageKind = 'standard' | 'premium' | 'fast' | 'upscale' | 'edit' | 'kontext'
+
+export interface UsageCounters {
+  std_used: number
+  premium_used: number
+  fast_paid: number
+  upscale_paid: number
+  edit_used: number
+  kontext_used: number
+}
+
 export interface UsageRecord {
   id: string
   user_id: string
@@ -42,6 +53,13 @@ export interface UsageRecord {
   period_end: string
   generations_used: number
   quota_limit: number | null
+  // v1.2 fields
+  std_used: number
+  premium_used: number
+  fast_paid: number
+  upscale_paid: number
+  edit_used: number
+  kontext_used: number
   created_at: string
   updated_at: string
 }

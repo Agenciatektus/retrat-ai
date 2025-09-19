@@ -4,9 +4,6 @@ import { stripeService } from '@/lib/services/stripe'
 import { getPremiumPrice } from '@/lib/pricing'
 import { z } from 'zod'
 
-// Force dynamic rendering for this route
-export const dynamic = 'force-dynamic'
-
 const PremiumAddonRequestSchema = z.object({
   count: z.number().int().min(1).max(20).default(1), // Max 20 premium photos per transaction
   success_url: z.string().url(),

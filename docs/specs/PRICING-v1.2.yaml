@@ -1,0 +1,170 @@
+version: "1.2"
+title: "Pricing & Engines v1.2 - Multi-Provider Support"
+date: "2025-01-19"
+status: "implemented"
+
+overview: |
+  Implementa suporte a múltiplos provedores (Replicate + KIE) com sistema 
+  de cobrança granular por engine e add-ons sob demanda.
+
+scope:
+  - Multi-provider engine routing (Replicate + KIE)
+  - Granular cost tracking per engine
+  - Add-on system for premium features
+  - Feature flag for rollback capability
+  - Enhanced telemetry and billing
+
+engines:
+  standard:
+    provider: "replicate"
+    model: "stability-ai/sdxl"
+    cost_usd: 0.005
+    cost_brl: 0.025
+    included: true
+    description: "Qualidade padrão SDXL"
+    
+  fast:
+    provider: "replicate" 
+    model: "google/imagen-4-fast"
+    cost_usd: 0.02
+    cost_brl: 0.10
+    addon_price: 0.40
+    description: "Geração rápida ~10s"
+    
+  premium:
+    provider: "kie"
+    model: "google/imagen-4"
+    cost_usd: 0.0225
+    cost_brl: 0.1125
+    addon_price: 0.99
+    description: "Máxima qualidade fotorrealística"
+    
+  edit:
+    provider: "kie"
+    model: "google/nano-banana"
+    cost_usd: 0.02
+    cost_brl: 0.10
+    uses_premium_quota: true
+    description: "Edição de imagens"
+    
+  kontext:
+    provider: "kie"
+    model: "black-forest-labs/flux-kontext-pro"
+    cost_usd: 0.04
+    cost_brl: 0.20
+    uses_premium_quota: true
+    description: "Especializado em texto/contexto"
+    
+  upscale:
+    provider: "kie"
+    model: "recraft/crisp-upscale"
+    cost_usd: 0.0025
+    cost_brl: 0.0125
+    addon_price: 0.19
+    description: "Upscale com qualidade crisp"
+
+billing_logic:
+  standard: "Debita 1 crédito standard do plano"
+  fast: "Sempre cobra add-on R$0,40"
+  premium: "Usa premium incluso ou cobra add-on R$0,99"
+  edit: "Usa premium incluso ou cobra add-on R$0,99"
+  kontext: "Usa premium incluso ou cobra add-on R$0,99"
+  upscale: "Sempre cobra add-on R$0,19"
+
+plans_updated:
+  free:
+    std_credits: 15
+    premium_included: 0
+    
+  pro:
+    std_credits: 120
+    premium_included: 0
+    
+  creator:
+    std_credits: 300
+    premium_included: 5
+    
+  studio:
+    std_credits: 600
+    premium_included: 20
+
+database_changes:
+  new_tables:
+    - "generations_v2"
+    
+  new_columns:
+    subscriptions:
+      - "premium_included INT"
+    usage:
+      - "std_used INT"
+      - "premium_used INT"
+      - "fast_paid INT"
+      - "upscale_paid INT"
+      - "edit_used INT"
+      - "kontext_used INT"
+      
+  new_functions:
+    - "debit_standard_credits(uuid, int)"
+    - "debit_premium_credits(uuid, int)"
+
+api_changes:
+  new_endpoints:
+    - "GET /api/plans - Returns v1.2 pricing with engines"
+    - "POST /api/generate/v2 - Engine routing with billing"
+    - "POST /api/analyze/reference - Photography analysis"
+    
+  modified_endpoints:
+    - "/api/projects/[id]/assets - Auto-analysis on reference upload"
+    - "/api/projects/[id]/generate - Uses existing analysis"
+
+components_added:
+  - "QualityPicker.tsx - Engine selection with pricing"
+  - "ReferenceAnalyzer.tsx - Photography analysis UI"
+  - "PhotographyAnalyzer - Core analysis engine"
+
+telemetry_events:
+  - "engine_selected"
+  - "addon_purchased_fast"
+  - "addon_purchased_premium" 
+  - "addon_purchased_upscale"
+  - "generation_succeeded"
+  - "generation_failed"
+  - "quota_exceeded"
+
+feature_flags:
+  pricing_v1_2:
+    default: true
+    description: "Enable v1.2 pricing and engines"
+    rollback: "Set to false to use legacy pricing"
+
+acceptance_criteria:
+  - "✅ /api/plans returns version 1.2 + addon prices"
+  - "✅ UI shows Standard/Fast/Premium with correct values"
+  - "✅ Billing and limits work (std/premium/addon)"
+  - "✅ Telemetry records engine_selected events"
+  - "✅ Migration applied without data loss"
+  - "✅ Feature flag allows quick rollback"
+  - "✅ Photography analysis auto-runs on reference upload"
+  - "✅ Master prompts stored and reused in generation"
+
+performance_targets:
+  - "API response time ≤ 500ms"
+  - "Engine routing ≤ 100ms"
+  - "Photography analysis ≤ 2s"
+  - "Build time impact ≤ 10%"
+
+risks:
+  low:
+    - "KIE API integration pending"
+    - "Stripe one-off payments TODO"
+  medium:
+    - "Photography analysis accuracy depends on heuristics"
+  high:
+    - "None identified"
+
+next_steps:
+  - "Integrate KIE API endpoints"
+  - "Implement Stripe one-off payments for add-ons"
+  - "Add visual feedback for engine selection"
+  - "Performance testing with multiple engines"
+  - "A/B test engine preferences"

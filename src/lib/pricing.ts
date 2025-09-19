@@ -1,204 +1,180 @@
 /**
- * Pricing System v1.1 - Single Source of Truth
- * Based on PLANS-v1.1.yaml and system-update-plans.md
+ * Pricing & Engines v1.2 - Single source of truth
+ * 
+ * Suporta novos motores e custos:
+ * - Standard (SDXL) = R$0,025/img
+ * - Fast (imagen-4-fast) = R$0,10/img  
+ * - Premium (imagen-4) = R$0,1125/img
+ * - Edit (nano-banana) = R$0,10/img
+ * - Kontext (flux-kontext-pro) = R$0,20/img
+ * - Upscale (crisp-upscale) = R$0,0125/op
  */
 
+export type EngineKey = 'standard' | 'fast' | 'premium' | 'edit' | 'kontext' | 'upscale'
+
+export const FX_BRL_PER_USD = Number(process.env.FX_BRL_PER_USD ?? 5)
+
+export const COSTS_USD = {
+  standard: 0.005,    // SDXL (Replicate)
+  fast: 0.02,         // imagen-4-fast (Replicate)
+  premium: 0.0225,    // imagen-4 (KIE)
+  edit: 0.02,         // nano-banana (KIE)
+  kontext: 0.04,      // flux-kontext-pro (KIE)
+  upscale: 0.0025     // recraft crisp-upscale (KIE)
+} as const
+
+export const COSTS_BRL: Record<EngineKey, number> = {
+  standard: COSTS_USD.standard * FX_BRL_PER_USD,
+  fast: COSTS_USD.fast * FX_BRL_PER_USD,
+  premium: COSTS_USD.premium * FX_BRL_PER_USD,
+  edit: COSTS_USD.edit * FX_BRL_PER_USD,
+  kontext: COSTS_USD.kontext * FX_BRL_PER_USD,
+  upscale: COSTS_USD.upscale * FX_BRL_PER_USD
+}
+
+export const ADDON_PRICES_BRL = {
+  fast: 0.40,
+  premium: 0.99,
+  upscale: 0.19
+} as const
+
+export type PlanId = 'free' | 'pro' | 'creator' | 'studio'
+
 export interface Plan {
-  id: string
+  id: PlanId
   name: string
-  price_brl: number
-  std_credits: number
-  premium_included: number
+  price: number
+  stdCredits: number
+  premiumIncluded: number
+  description: string
   features: string[]
-  premium_policy?: 'pay_per_use'
 }
 
-export interface PlanCopy {
-  title: string
-  price: string
-  bullets: string[]
-  cta: string
-}
-
-export interface AddOns {
-  premium_extra_price: number
-  std_extra_100_price: number
-}
-
-export interface PricingConfig {
-  version: string
-  currency: string
-  addons: AddOns
-  plans: Plan[]
-  copy_cards: Record<string, PlanCopy>
-}
-
-// Single source of truth for pricing - based on PLANS-v1.1.yaml
-export const PRICING_CONFIG: PricingConfig = {
-  version: "1.1",
-  currency: "BRL",
-  addons: {
-    premium_extra_price: 0.99,
-    std_extra_100_price: 6.00
+export const PLANS: Plan[] = [
+  {
+    id: 'free',
+    name: 'Free',
+    price: 0,
+    stdCredits: 15,
+    premiumIncluded: 0,
+    description: '15 créditos standard por mês',
+    features: [
+      '15 gerações standard/mês',
+      'Qualidade SDXL',
+      'Suporte por email'
+    ]
   },
-  plans: [
-    {
-      id: "free",
-      name: "Free",
-      price_brl: 0,
-      std_credits: 15,
-      premium_included: 0,
-      features: ["Standard only", "Resolução padrão com marca d'água"]
-    },
-    {
-      id: "pro", 
-      name: "Pro",
-      price_brl: 29,
-      std_credits: 120,
-      premium_included: 0,
-      features: ["HD sem marca d'água", "Fundo transparente", "Variações avançadas"],
-      premium_policy: "pay_per_use"
-    },
-    {
-      id: "creator",
-      name: "Creator", 
-      price_brl: 59,
-      std_credits: 300,
-      premium_included: 5,
-      features: ["HD", "Fundo transparente", "Exportações em lote", "Suporte prioritário"]
-    },
-    {
-      id: "studio",
-      name: "Studio",
-      price_brl: 99, 
-      std_credits: 600,
-      premium_included: 20,
-      features: ["HD+", "Presets por projeto", "Variações em série", "Processamento prioritário", "Suporte dedicado"]
-    }
-  ],
-  copy_cards: {
-    free: {
-      title: "Free",
-      price: "R$ 0/mês",
-      bullets: [
-        "15 fotos/mês (standard)",
-        "Resolução padrão • marca d'água", 
-        "Galeria por projeto e variações básicas",
-        "Exportação para feed e stories"
-      ],
-      cta: "Começar grátis"
-    },
-    pro: {
-      title: "Pro",
-      price: "R$ 29/mês", 
-      bullets: [
-        "120 fotos/mês (standard)",
-        "HD • sem marca d'água",
-        "Fundo transparente + variações avançadas",
-        "Premium sob demanda: R$ 0,99/foto",
-        "Suporte por e-mail"
-      ],
-      cta: "Assinar Pro"
-    },
-    creator: {
-      title: "Creator",
-      price: "R$ 59/mês",
-      bullets: [
-        "300 fotos/mês (standard)", 
-        "5 fotos Premium inclusas/mês",
-        "HD, fundo transparente, controle fino de estilo",
-        "Exportações em lote",
-        "Suporte prioritário"
-      ],
-      cta: "Assinar Creator"
-    },
-    studio: {
-      title: "Studio", 
-      price: "R$ 99/mês",
-      bullets: [
-        "600 fotos/mês (standard)",
-        "20 fotos Premium inclusas/mês", 
-        "HD+, presets salvos por projeto, variações em série",
-        "Processamento prioritário",
-        "Suporte dedicado"
-      ],
-      cta: "Assinar Studio"
-    }
+  {
+    id: 'pro',
+    name: 'Pro',
+    price: 29,
+    stdCredits: 120,
+    premiumIncluded: 0,
+    description: '120 créditos standard + premium sob demanda',
+    features: [
+      '120 gerações standard/mês',
+      'Premium sob demanda (+R$0,99)',
+      'Fast sob demanda (+R$0,40)',
+      'Upscale (+R$0,19)',
+      'Suporte prioritário'
+    ]
+  },
+  {
+    id: 'creator',
+    name: 'Creator',
+    price: 59,
+    stdCredits: 300,
+    premiumIncluded: 5,
+    description: '300 créditos + 5 premium inclusos',
+    features: [
+      '300 gerações standard/mês',
+      '5 gerações premium incluídas',
+      'Fast sob demanda (+R$0,40)',
+      'Upscale (+R$0,19)',
+      'Edição de texto/contexto',
+      'Suporte prioritário'
+    ]
+  },
+  {
+    id: 'studio',
+    name: 'Studio',
+    price: 99,
+    stdCredits: 600,
+    premiumIncluded: 20,
+    description: '600 créditos + 20 premium inclusos',
+    features: [
+      '600 gerações standard/mês',
+      '20 gerações premium incluídas',
+      'Fast sob demanda (+R$0,40)',
+      'Upscale (+R$0,19)',
+      'Edição avançada de texto/contexto',
+      'Suporte dedicado',
+      'API access'
+    ]
   }
+]
+
+export const FEATURE_FLAGS = {
+  pricing_v1_2: (process.env.PRICING_V1_2 ?? 'true') === 'true'
 }
 
-export function getPlan(planId: string): Plan | null {
-  return PRICING_CONFIG.plans.find(plan => plan.id === planId) || null
+export function brl(n: number): number {
+  return Math.round(n * 100) / 100
 }
 
-export function getPlanCopy(planId: string): PlanCopy | null {
-  return PRICING_CONFIG.copy_cards[planId] || null
-}
-
-export function calculateCreditsUsed(
-  standardGenerations: number,
-  premiumGenerations: number
-): { standard: number; premium: number } {
-  return {
-    standard: standardGenerations,
-    premium: premiumGenerations
+export function getPlan(planId: PlanId): Plan {
+  const plan = PLANS.find(p => p.id === planId)
+  if (!plan) {
+    throw new Error(`Plan not found: ${planId}`)
   }
+  return plan
 }
 
-export function canUserGenerate(
-  plan: Plan,
-  currentUsage: { std_used: number; premium_used: number },
-  generationType: 'standard' | 'premium' = 'standard'
-): { canGenerate: boolean; reason?: string } {
-  if (generationType === 'standard') {
-    if (currentUsage.std_used >= plan.std_credits) {
-      return {
-        canGenerate: false,
-        reason: 'Standard credits exhausted'
-      }
-    }
-    return { canGenerate: true }
+export function getFreePlan(): Plan {
+  return getPlan('free')
+}
+
+export function getPlans(): Plan[] {
+  return PLANS
+}
+
+export function formatBRL(amount: number): string {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(amount)
+}
+
+export function getEngineDisplayName(engine: EngineKey): string {
+  const names = {
+    standard: 'Standard (SDXL)',
+    fast: 'Fast (Imagen-4)',
+    premium: 'Premium (Imagen-4)',
+    edit: 'Edição (Nano-Banana)',
+    kontext: 'Kontext (Flux Pro)',
+    upscale: 'Upscale (Crisp)'
   }
+  return names[engine]
+}
 
-  if (generationType === 'premium') {
-    if (currentUsage.premium_used >= plan.premium_included) {
-      return {
-        canGenerate: plan.premium_policy === 'pay_per_use',
-        reason: plan.premium_policy === 'pay_per_use' 
-          ? 'Premium add-on required'
-          : 'Premium credits exhausted'
-      }
-    }
-    return { canGenerate: true }
+export function getEngineDescription(engine: EngineKey): string {
+  const descriptions = {
+    standard: 'Qualidade padrão, ideal para a maioria dos casos',
+    fast: 'Geração rápida com qualidade superior',
+    premium: 'Máxima qualidade fotorrealística',
+    edit: 'Edição de imagens existentes',
+    kontext: 'Especializado em texto e contexto complexo',
+    upscale: 'Aumento de resolução com qualidade crisp'
   }
-
-  return { canGenerate: false, reason: 'Unknown generation type' }
+  return descriptions[engine]
 }
 
-export const TELEMETRY_EVENTS = [
-  'plan_viewed',
-  'plan_selected', 
-  'checkout_completed',
-  'generation_requested',
-  'generation_succeeded',
-  'quota_exceeded',
-  'addon_purchased',
-  'extra_pack_purchased'
-] as const
-
-export type TelemetryEvent = typeof TELEMETRY_EVENTS[number]
-
-// Function to get current pricing configuration (used by API)
-export function getCurrentPricingConfig(): PricingConfig {
-  return PRICING_CONFIG
-}
-
-// Function to get premium add-on price
+// Legacy exports for backward compatibility
 export function getPremiumPrice(): number {
-  return PRICING_CONFIG.addons.premium_extra_price
+  return ADDON_PRICES_BRL.premium
 }
 
-// Function to get standard extra pack price
-export function getStandardExtraPrice(): number {
-  return PRICING_CONFIG.addons.std_extra_100_price
+export function canUserGenerate(): boolean {
+  // Legacy function - use server/billing.ts instead
+  return true
 }

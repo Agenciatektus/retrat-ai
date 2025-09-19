@@ -107,6 +107,38 @@ export async function POST(
         }
 
         uploadResults.push(asset)
+
+        // Auto-analyze reference images
+        if (validatedType.type === 'reference') {
+          try {
+            // Import the photography analyzer
+            const { photographyAnalyzer } = await import('@/lib/agents/photography-analyzer')
+            
+            // Analyze the reference image
+            const analysis = await photographyAnalyzer.analyzeReference(
+              cloudinaryResult.secure_url,
+              `Auto-analysis for ${file.name}`
+            )
+
+            // Store analysis in database
+            await supabase
+              .from('reference_analyses')
+              .insert({
+                project_id: params.id,
+                user_id: user.id,
+                image_url: cloudinaryResult.secure_url,
+                analysis: analysis,
+                master_prompt: analysis.masterPrompt,
+                confidence_score: analysis.confidence,
+                user_context: `Auto-analysis for ${file.name}`
+              })
+
+            console.log(`Auto-analyzed reference: ${file.name} (${Math.round(analysis.confidence * 100)}% confidence)`)
+          } catch (analysisError) {
+            console.error('Failed to auto-analyze reference:', analysisError)
+            // Don't fail the upload if analysis fails
+          }
+        }
       } catch (uploadError) {
         console.error('Upload error:', uploadError)
         errors.push({
